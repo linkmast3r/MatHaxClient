@@ -182,7 +182,7 @@ public class Nametags extends Module {
     private final Setting<Boolean> displayPing = sgPlayers.add(new BoolSetting.Builder()
         .name("ping")
         .description("Shows the player's ping.")
-        .defaultValue(true)s
+        .defaultValue(true)
         .build()
     );
 

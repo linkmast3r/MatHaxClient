@@ -115,8 +115,8 @@ public class TitleScreenMixin extends Screen {
             MatHaxExecutor.execute(() -> HttpUtils.getLines("http://mathaxclient.xyz/API/version_1-17.html", s -> {
                 Version latestVer = new Version(s);
                 if (latestVer.isHigherThan(Config.get().version)) MinecraftClient.getInstance().openScreen(new NewUpdateScreen(GuiThemes.get(), latestVer));
-                MatHaxClient.LOG.info("[MatHax] Checked for latest version of MatHax Client!");
             }));
+            MatHaxClient.LOG.info("[MatHax] Checked for latest version of MatHax Client!");
         }
     }
 
