@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "name": "MatHax Client",
+  "id": "mathax",
+  "version": "${version}",
+  "description": "MatHax is an advanced Minecraft utility mod for Fabric.",
+  "authors": [
+    "Matejko06",
+    "GeekieCoder"
+  ],
+  "contact": {
+    "homepage": "http://mathaxclient.xyz",
+    "issues": "https://github.com/Matejko06/MatHaxClient/issues",
+    "discord": "http://mathaxclient.xyz/Discord"
+  },
+  "license": "GPL-3.0",
+  "icon": "assets/mathax/icon.png",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "matejko06.mathax.MatHaxClient"
+    ]
+  },
+  "mixins": [
+    "mathax.mixins.json",
+    "mathax-sodium.mixins.json",
+    "mathax-indigo.mixins.json",
+    "mathax-baritone.mixins.json"
+  ],
+  "accessWidener": "mathax.accesswidener",
+  "custom": {
+    "modmenu": {
+      "links": {
+        "Website": "http://mathaxclient.xyz",
+        "Issues": "https://github.com/Matejko06/MatHaxClient/issues",
+        "Discord": "http://mathaxclient.xyz/Discord"
+      }
+    }
+  },
+  "depends": {
+    "java": ">=16",
+    "minecraft": ">=1.17"
+  },
+  "breaks": {
+    "optifabric": "*"
+  }
+}

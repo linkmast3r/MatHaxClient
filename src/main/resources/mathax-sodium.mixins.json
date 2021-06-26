@@ -1,0 +1,13 @@
+{
+  "required": false,
+  "package": "matejko06.mathax.mixin.sodium",
+  "compatibilityLevel": "JAVA_16",
+  "client": [
+    "SodiumBlockOcculsionCacheMixin",
+    "SodiumBlockRendererMixin",
+    "SodiumFluidRendererMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
