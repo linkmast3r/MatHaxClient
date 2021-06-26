@@ -1,4 +1,4 @@
-# <a href="https://mathaxclient.xyz"><img src="http://mathaxclient.xyz/resources/icon/icon.png" alt="MatHax" height="50"/> MatHax</a>
+# <a href="https://mathaxclient.xyz"><img src="http://mathaxclient.xyz/assets/icon.png" alt="MatHax" height="50"/> MatHax</a>
 [![Discord](https://img.shields.io/discord/823286525402939402?logo=discord)](https://discord.gg/h9dA5epGDx)
 
 ## ABOUT
