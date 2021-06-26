@@ -9,4 +9,4 @@ MatHax is an recoded version of Meteor Client by MineGame159, seasnail & squidoo
 Edited and operated by Matejko06 & GeekieCoder.
 
 ## Installing
-Visit https://mathaxclient.xyz/Download for instructions on downloading and installing the client.
+Visit https://mathaxclient.xyz/FAQ for instructions on downloading and installing the client.
