@@ -149,7 +149,7 @@ public class Spam extends Module {
             NbtList messagesTag = tag.getList("messages", 8);
             for (NbtElement messageTag : messagesTag) messages.add(messageTag.asString());
         } else {
-            messages.add("MatHax on Crack!");
+            messages.add("MatHax on TOP!");
         }
 
         return super.fromTag(tag);

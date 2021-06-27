@@ -11,7 +11,7 @@ import net.minecraft.nbt.NbtCompound;
 import java.util.Map;
 
 public class Waypoint implements ISerializable<Waypoint> {
-    public String name = "MatHax on Crack!";
+    public String name = "MatHax on TOP!";
     public String icon = "Square";
     public SettingColor color = new SettingColor(225, 25, 25);
 

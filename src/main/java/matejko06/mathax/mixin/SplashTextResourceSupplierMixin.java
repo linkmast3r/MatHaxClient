@@ -30,7 +30,7 @@ public class SplashTextResourceSupplierMixin {
                 "§7Matejko06 §cbased god",
                 "§7GeekieCoder §cbased god",
                 "§cMatHaxClient.xyz",
-                "§cMatHaxClient.xyz/discord"
+                "§cMatHaxClient.xyz/Discord"
         );
     }
 }

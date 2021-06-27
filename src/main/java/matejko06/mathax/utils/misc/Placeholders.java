@@ -3,6 +3,7 @@ package matejko06.mathax.utils.misc;
 import matejko06.mathax.systems.config.Config;
 import matejko06.mathax.utils.Utils;
 import net.minecraft.SharedConstants;
+import net.minecraft.client.gui.screen.TitleScreen;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -31,7 +32,7 @@ public class Placeholders {
             case "%mc_version%": return SharedConstants.getGameVersion().getName();
             case "%player%":
             case "%username%":   return mc.getSession().getUsername();
-            case "%server%":     return Utils.getWorldName();
+            case "%server%":     if (mc.currentScreen instanceof TitleScreen) { return "In Menu"; } else { return Utils.getWorldName(); }
             default:             return "";
         }
     }

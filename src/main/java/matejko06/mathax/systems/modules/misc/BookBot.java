@@ -43,7 +43,7 @@ public class BookBot extends Module {
     private final Setting<String> name = sgGeneral.add(new StringSetting.Builder()
         .name("name")
         .description("The name you want to give your books.")
-        .defaultValue("MatHax on Crack!")
+        .defaultValue("MatHax on TOP!")
         .build()
     );
 

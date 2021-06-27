@@ -13,7 +13,6 @@ import matejko06.mathax.systems.modules.Module;
 import matejko06.mathax.utils.Utils;
 import matejko06.mathax.utils.misc.Placeholders;
 import matejko06.mathax.bus.EventHandler;
-import net.minecraft.SharedConstants;
 
 public class DiscordPresence extends Module {
     private final SettingGroup sgGeneral = settings.getDefaultGroup();
@@ -35,10 +34,6 @@ public class DiscordPresence extends Module {
 
     public DiscordPresence() {
         super(Categories.Misc, "discord-presence", "Displays a RPC for you on Discord to show that you're playing MatHax Client!");
-    }
-
-    static String getMinecraftVersion(){
-        return SharedConstants.getGameVersion().getName();
     }
 
     @Override
@@ -76,10 +71,10 @@ public class DiscordPresence extends Module {
                 } else if (mc.getSession().getUsername().equals("ludanecek")) {
                     currentSmallImage = SmallImage.Ludanecek;
                 } else {
-                    currentSmallImage = SmallImage.NotClientDev;
+                    currentSmallImage = SmallImage.NotClientVIP;
                 }
             } else {
-                currentSmallImage = SmallImage.NotClientDev;
+                currentSmallImage = SmallImage.NotClientVIP;
             }
             currentSmallImage.apply();
             instance.Discord_UpdatePresence(rpc);
@@ -103,8 +98,8 @@ public class DiscordPresence extends Module {
     private enum SmallImage {
         Matejko06("matejko06", "Developer: Matejko06"),
         GeekieCoder("geekiecoder", "Developer: GeekieCoder"),
-        Ludanecek("ludanecek","Friend: ludanecek"),
-        NotClientDev("", "");
+        Ludanecek("ludanecek","VIP: ludanecek"),
+        NotClientVIP("", "");
 
         private final String key, text;
 

@@ -17,7 +17,7 @@ public class MessageAura extends Module {
     private final Setting<String> message = sgGeneral.add(new StringSetting.Builder()
             .name("message")
             .description("The specified message sent to the player.")
-            .defaultValue("MatHax on Crack!")
+            .defaultValue("MatHax on TOP!")
             .build()
     );
 
