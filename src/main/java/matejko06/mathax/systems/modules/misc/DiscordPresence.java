@@ -20,7 +20,7 @@ public class DiscordPresence extends Module {
 
     private final Setting<Boolean> playericon = sgGeneral.add(new BoolSetting.Builder()
         .name("player-icon")
-        .description("If youre a special person for the MatHax Team, your head will be on the presence.")
+        .description("If your a special person for the MatHax Team, your head will be on the presence.")
         .defaultValue(true)
         .build()
     );
