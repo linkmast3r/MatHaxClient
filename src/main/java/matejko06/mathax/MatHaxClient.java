@@ -101,22 +101,6 @@ public class MatHaxClient implements ClientModInitializer {
         mc.getInstance().execute(this::updateTitleLoading);
         mc.getInstance().execute(this::updateImage);
 
-        String BannedUser1 = "F" + "_" + "z" + "a" + "b" + "a" + "0"+ "7";
-        String BannedUser2 = "I" + "l" + "l" + "u" + "m" + "a" + "n" + "_" + "1" + "3";
-
-        if (mc.getSession().getUsername().equals(BannedUser1)) {
-            LOG.info(logprefix + BannedUser1 + " tried to use MatHax Client! Shutting down...");
-            //System.exit(0);
-            mc.close();
-        }
-        else if (mc.getSession().getUsername().equals(BannedUser2)) {
-            LOG.info(logprefix + BannedUser2 + " tried to use MatHax Client! Shutting down...");
-            //System.exit(0);
-            mc.close();
-        } else {
-            LOG.info(logprefix + "This user is allowed to use MatHax Client!");
-        }
-
         Systems.addPreLoadTask(() -> {
             if (!Modules.get().getFile().exists()) {
                 Modules.get().get(HUD.class).toggle(false);
