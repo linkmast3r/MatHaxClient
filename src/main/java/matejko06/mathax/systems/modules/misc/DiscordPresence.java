@@ -25,7 +25,7 @@ public class DiscordPresence extends Module {
     );
 
     String line1 = "%username% | %server%";
-    String line2 = "http://mathaxclient.xyz";
+    String line2 = "https://mathaxclient.xyz";
 
     private static final DiscordRichPresence rpc = new DiscordRichPresence();
     private static final DiscordRPC instance = DiscordRPC.INSTANCE;

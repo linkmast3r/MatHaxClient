@@ -54,7 +54,7 @@ public class Main {
                 e.printStackTrace();
             }
         } else if (option == 3) {
-            openUrl("http://mathaxclient.xyz");
+            openUrl("https://mathaxclient.xyz");
         }
     }
 
