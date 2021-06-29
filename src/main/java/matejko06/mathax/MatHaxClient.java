@@ -67,7 +67,7 @@ public class MatHaxClient implements ClientModInitializer {
     public static String logprefix = "[MatHax] ";
 
     public static String versionNumber = "1.0.0";
-    public static String devbuildNumber = "7";
+    public static String devbuildNumber = "8";
 
     public static String devbuild = " DevBuild " + devbuildNumber + " ";
     //public static String devbuild = "";
@@ -75,7 +75,7 @@ public class MatHaxClient implements ClientModInitializer {
     public static String clientversion = versionNumber + devbuild;
 
     public static String discorddevbuild = devbuild + "- ";
-    //public static String discorddevbuild = "";f
+    //public static String discorddevbuild = "";
 
     public static String discordversion = " " + "v" + versionNumber + discorddevbuild + MinecraftClient.getInstance().getVersionType() + " " + getMinecraftVersion();
 

@@ -35,7 +35,7 @@ public class Config extends System<Config> {
         if (versionString.contains("-")) versionString = versionString.split("-")[0];*/
 
         version = new Version(" 1.0.0");
-        devBuild = "7";
+        devBuild = "8";
     }
 
     public static Config get() {

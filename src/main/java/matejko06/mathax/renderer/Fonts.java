@@ -14,7 +14,7 @@ import static matejko06.mathax.utils.Utils.mc;
 
 public class Fonts {
     private static final String[] BUILTIN_FONTS = { "Minecraft.ttf", "JetBrains Mono.ttf", "Comfortaa.ttf", "Tw Cen MT.ttf", "Pixelation.ttf" };
-    public static final String DEFAULT_FONT = "Minecraft";
+    public static final String DEFAULT_FONT = "Comfortaa";
     private static final File FOLDER = new File(MatHaxClient.FOLDER, "fonts");
 
     public static CustomTextRenderer CUSTOM_FONT;
