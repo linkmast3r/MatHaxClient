@@ -75,7 +75,7 @@ public class MatHaxClient implements ClientModInitializer {
     public static String clientversion = versionNumber + devbuild;
 
     public static String discorddevbuild = devbuild + "- ";
-    //public static String discorddevbuild = "";
+    //public static String discorddevbuild = "";f
 
     public static String discordversion = " " + "v" + versionNumber + discorddevbuild + MinecraftClient.getInstance().getVersionType() + " " + getMinecraftVersion();
 
