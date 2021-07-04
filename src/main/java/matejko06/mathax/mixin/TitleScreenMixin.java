@@ -6,8 +6,8 @@ import matejko06.mathax.gui.GuiThemes;
 import matejko06.mathax.gui.screens.NewUpdateScreen;
 import matejko06.mathax.systems.config.Config;
 import matejko06.mathax.utils.Utils;
-import matejko06.mathax.utils.network.HttpUtils;
 import matejko06.mathax.utils.network.MatHaxExecutor;
+import matejko06.mathax.utils.network.VersionHttpUtils;
 import matejko06.mathax.utils.render.color.Color;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.Screen;
@@ -21,6 +21,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(TitleScreen.class)
 public class TitleScreenMixin extends Screen {
+
+    private static final String VERSION_URL = "http://api.mathaxclient.xyz/Version/";
 
     private final int RED = Color.fromRGBA(255, 0, 0, 255);
     private final int WHITE = Color.fromRGBA(255, 255, 255, 255);
@@ -106,17 +108,23 @@ public class TitleScreenMixin extends Screen {
         prevWidth = 0;
     }
 
+    //TODO: Shows "com.g00fy2.versioncompare.Version@3f" as Client version and ignores higher version on the api website.
     @Inject(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/screen/TitleScreen;drawStringWithShadow(Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/font/TextRenderer;Ljava/lang/String;III)V", ordinal = 0))
-    private void onRenderIdkDude(MatrixStack matrices, int mouseX, int mouseY, float delta, CallbackInfo info) {
+    private void onRenderTitleScreen(MatrixStack matrices, int mouseX, int mouseY, float delta, CallbackInfo info) {
         if (Utils.firstTimeTitleScreen) {
             Utils.firstTimeTitleScreen = false;
-            MatHaxClient.LOG.info("[MatHax] Checking for latest version of MatHax Client...");
+            MatHaxClient.LOG.info("[MatHax] Checking latest version of MatHax Client...");
 
-            MatHaxExecutor.execute(() -> HttpUtils.getLines("http://mathaxclient.xyz/API/version_1-17.html", s -> {
+            /*MatHaxExecutor.execute(() -> VersionHttpUtils.getLines(VERSION_URL, s -> {
                 Version latestVer = new Version(s);
                 if (latestVer.isHigherThan(Config.get().version)) MinecraftClient.getInstance().openScreen(new NewUpdateScreen(GuiThemes.get(), latestVer));
-            }));
-            MatHaxClient.LOG.info("[MatHax] Checked for latest version of MatHax Client!");
+                if (latestVer.isHigherThan(Config.get().version)) {
+                    MatHaxClient.LOG.info("[MatHax] There is a new version of MatHax Client, v" + latestVer + "! You are using v" + Config.get().version.toString() + "!");
+                } else {
+                    MatHaxClient.LOG.info("[MatHax] You are using the latest version of MatHax Client, v" + Config.get().version.toString() + "!");
+                }
+            }));*/
+            MatHaxClient.LOG.info("[MatHax] Update checker is currently not working, check for new version on https://mathaxclient.xyz!");
         }
     }
 

@@ -8,13 +8,14 @@ import net.minecraft.util.Identifier;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.*;
+import java.util.stream.Stream;
 
 import static matejko06.mathax.utils.Utils.mc;
 
 public class Capes {
 
-    private static final String CAPE_OWNERS_URL = "https://mathaxclient.xyz/API/capeowners.html";
-    private static final String CAPES_URL = "https://mathaxclient.xyz/API/capes.html";
+    private static final String CAPE_OWNERS_URL = "http://api.mathaxclient.xyz/Cape/capeowners";
+    private static final String CAPES_URL = "http://api.mathaxclient.xyz/Cape/capes";
 
     private static final Map<UUID, String> OWNERS = new HashMap<>();
     private static final Map<String, String> URLS = new HashMap<>();
@@ -32,24 +33,28 @@ public class Capes {
         TO_RETRY.clear();
         TO_REMOVE.clear();
 
-        // Cape owners
-        MatHaxExecutor.execute(() -> HttpUtils.getLines(CAPE_OWNERS_URL, s -> {
-            String[] split = s.split(" ");
+        MatHaxExecutor.execute(() -> {
+            // Cape owners
+            Stream<String> lines = Http.get(CAPE_OWNERS_URL).sendLines();
+            if (lines != null) lines.forEach(s -> {
+                String[] split = s.split(" ");
 
-            if (split.length >= 2) {
-                OWNERS.put(UUID.fromString(split[0]), split[1]);
-                if (!TEXTURES.containsKey(split[1])) TEXTURES.put(split[1], new Cape(split[1]));
-            }
-        }));
+                if (split.length >= 2) {
+                    OWNERS.put(UUID.fromString(split[0]), split[1]);
+                    if (!TEXTURES.containsKey(split[1])) TEXTURES.put(split[1], new Cape(split[1]));
+                }
+            });
 
-        // Capes
-        MatHaxExecutor.execute(() -> HttpUtils.getLines(CAPES_URL, s -> {
-            String[] split = s.split(" ");
+            // Capes
+            lines = Http.get(CAPES_URL).sendLines();
+            if (lines != null) lines.forEach(s -> {
+                String[] split = s.split(" ");
 
-            if (split.length >= 2) {
-                if (!URLS.containsKey(split[0])) URLS.put(split[0], split[1]);
-            }
-        }));
+                if (split.length >= 2) {
+                    if (!URLS.containsKey(split[0])) URLS.put(split[0], split[1]);
+                }
+            });
+        });
     }
 
     public static Identifier get(PlayerEntity player) {
@@ -100,7 +105,7 @@ public class Capes {
         private int retryTimer;
 
         public Cape(String name) {
-            super("mathax", "capes/" + name);
+            super("meteor-client", "capes/" + name);
 
             this.name = name;
         }
@@ -120,7 +125,7 @@ public class Capes {
                         }
                     }
 
-                    InputStream in = HttpUtils.get(url);
+                    InputStream in = Http.get(url).sendInputStream();
                     if (in == null) {
                         synchronized (TO_RETRY) {
                             TO_RETRY.add(this);

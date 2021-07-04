@@ -4,7 +4,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class MatHaxExecutor {
-    private static ExecutorService executor;
+    public static ExecutorService executor;
 
     public static void init() {
         executor = Executors.newSingleThreadExecutor();

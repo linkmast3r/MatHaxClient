@@ -29,13 +29,13 @@ public class Config extends System<Config> {
     public Config() {
         super("config");
 
-        /*ModMetadata metadata = FabricLoader.getInstance().getModContainer("MatHax").get().getMetadata();
+        ModMetadata metadata = FabricLoader.getInstance().getModContainer("mathax").get().getMetadata();
 
         String versionString = metadata.getVersion().getFriendlyString();
-        if (versionString.contains("-")) versionString = versionString.split("-")[0];*/
+        if (versionString.contains("-")) versionString = versionString.split("-")[0];
 
-        version = new Version(" 1.0.0");
-        devBuild = "8";
+        version = new Version(versionString);
+        devBuild = "10";
     }
 
     public static Config get() {

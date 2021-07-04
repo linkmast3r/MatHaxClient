@@ -3,7 +3,7 @@ package matejko06.mathax.systems.accounts.types;
 import matejko06.mathax.systems.accounts.Account;
 import matejko06.mathax.systems.accounts.AccountType;
 import matejko06.mathax.systems.accounts.ProfileResponse;
-import matejko06.mathax.utils.network.HttpUtils;
+import matejko06.mathax.utils.network.Http;
 import net.minecraft.client.util.Session;
 
 public class CrackedAccount extends Account<CrackedAccount> {
@@ -20,12 +20,10 @@ public class CrackedAccount extends Account<CrackedAccount> {
 
     @Override
     public boolean fetchHead() {
-        try {
-            ProfileResponse response = HttpUtils.get("https://api.mojang.com/users/profiles/minecraft/" + cache.username, ProfileResponse.class);
-            return cache.makeHead("https://www.mc-heads.net/avatar/" + response.getId() + "/8");
-        } catch (Exception e) {
-            return cache.makeHead("steve");
-        }
+        ProfileResponse res = Http.get("https://api.mojang.com/users/profiles/minecraft/" + cache.username).sendJson(ProfileResponse.class);
+
+        if (res == null) return cache.makeHead("steve");
+        return cache.makeHead("https://www.mc-heads.net/avatar/" + res.id + "/8");
     }
 
     @Override

@@ -1,14 +1,12 @@
 package matejko06.mathax.systems.modules.render.hud.modules;
 
-import matejko06.mathax.settings.BoolSetting;
-import matejko06.mathax.settings.IntSetting;
-import matejko06.mathax.settings.Setting;
-import matejko06.mathax.settings.SettingGroup;
+import matejko06.mathax.settings.*;
 import matejko06.mathax.systems.friends.Friends;
 import matejko06.mathax.systems.modules.render.hud.HUD;
 import matejko06.mathax.systems.modules.render.hud.HudRenderer;
 import matejko06.mathax.utils.player.PlayerUtils;
 import matejko06.mathax.utils.render.color.Color;
+import matejko06.mathax.utils.render.color.SettingColor;
 import net.minecraft.client.network.AbstractClientPlayerEntity;
 import net.minecraft.entity.player.PlayerEntity;
 
@@ -18,6 +16,13 @@ import java.util.List;
 
 public class TextRadarHud extends HudElement {
     private final SettingGroup sgGeneral = settings.getDefaultGroup();
+
+    public final Setting<SettingColor> playerNameColor = sgGeneral.add(new ColorSetting.Builder()
+        .name("player-name-color")
+        .description("Color of player names.")
+        .defaultValue(new SettingColor(255, 0, 150))
+        .build()
+    );
 
     private final Setting<Integer> limit = sgGeneral.add(new IntSetting.Builder()
         .name("limit")
@@ -90,7 +95,7 @@ public class TextRadarHud extends HudElement {
             y += renderer.textHeight() + 2;
 
             String text = entity.getEntityName();
-            Color color = PlayerUtils.getPlayerColor(entity, hud.secondaryColor.get());
+            Color color = PlayerUtils.getPlayerColor(entity, playerNameColor.get());
 
             renderer.text(text, x, y, color);
 

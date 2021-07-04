@@ -7,13 +7,13 @@ public class OnlinePlayers {
         long time = System.currentTimeMillis();
 
         if (time - lastPingTime > 5 * 60 * 1000) {
-            MatHaxExecutor.execute(() -> HttpUtils.post("https://mathaxclient.xyz/API/online/ping"));
+            MatHaxExecutor.execute(() -> Http.post("http://api.mathaxclient.xyz/online/ping").send());
 
             lastPingTime = time;
         }
     }
 
     public static void leave() {
-        MatHaxExecutor.execute(() -> HttpUtils.post("https://mathaxclient.xyz/API/online/leave"));
+        MatHaxExecutor.execute(() -> Http.post("http://api.mathaxclient.xyz/online/leave").send());
     }
 }

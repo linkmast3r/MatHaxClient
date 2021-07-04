@@ -12,7 +12,7 @@ import matejko06.mathax.settings.SettingGroup;
 import matejko06.mathax.systems.modules.Categories;
 import matejko06.mathax.systems.modules.Module;
 import matejko06.mathax.utils.misc.Vec3;
-import matejko06.mathax.utils.network.HttpUtils;
+import matejko06.mathax.utils.network.Http;
 import matejko06.mathax.utils.network.MatHaxExecutor;
 import matejko06.mathax.utils.render.NametagUtils;
 import matejko06.mathax.utils.render.color.Color;
@@ -30,6 +30,7 @@ import java.util.Map;
 import java.util.UUID;
 
 public class EntityOwner extends Module {
+
     private static final Color BACKGROUND = new Color(0, 0, 0, 75);
     private static final Color TEXT = new Color(255, 255, 255);
     private static final Type RESPONSE_TYPE = new TypeToken<List<UuidNameHistoryResponseItem>>() {}.getType();
@@ -37,18 +38,18 @@ public class EntityOwner extends Module {
     private final SettingGroup sgGeneral = settings.getDefaultGroup();
 
     private final Setting<Double> scale = sgGeneral.add(new DoubleSetting.Builder()
-            .name("scale")
-            .description("The scale of the text.")
-            .defaultValue(1)
-            .min(0)
-            .build()
+        .name("scale")
+        .description("The scale of the text.")
+        .defaultValue(1)
+        .min(0)
+        .build()
     );
 
     private final Setting<Boolean> projectiles = sgGeneral.add(new BoolSetting.Builder()
-            .name("projectiles")
-            .description("Display owner names of projectiles.")
-            .defaultValue(false)
-            .build()
+        .name("projectiles")
+        .description("Display owner names of projectiles.")
+        .defaultValue(false)
+        .build()
     );
 
     private final Vec3 pos = new Vec3();
@@ -117,11 +118,11 @@ public class EntityOwner extends Module {
         // Makes a HTTP request to Mojang API
         MatHaxExecutor.execute(() -> {
             if (isActive()) {
-                List<UuidNameHistoryResponseItem> response = HttpUtils.get("https://api.mojang.com/user/profiles/" + uuid.toString().replace("-", "") + "/names", RESPONSE_TYPE);
+                List<UuidNameHistoryResponseItem> res = Http.get("https://api.mojang.com/user/profiles/" + uuid.toString().replace("-", "") + "/names").sendJson(RESPONSE_TYPE);
 
                 if (isActive()) {
-                    if (response == null || response.size() <= 0) uuidToName.put(uuid, "Failed to get name");
-                    else uuidToName.put(uuid, response.get(response.size() - 1).name);
+                    if (res == null || res.size() <= 0) uuidToName.put(uuid, "Failed to get name");
+                    else uuidToName.put(uuid, res.get(res.size() - 1).name);
                 }
             }
         });
