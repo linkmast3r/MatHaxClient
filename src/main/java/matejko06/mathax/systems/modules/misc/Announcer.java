@@ -19,6 +19,7 @@ public class Announcer extends Module {
     private static final double TICK = 1.0 / 20.0;
 
     private final Feature[] features = {
+            //new FriendGreeter(),
             new Moving(),
             new Mining(),
             new Placing(),
@@ -90,31 +91,48 @@ public class Announcer extends Module {
         }
     }
 
+    /*private class FriendGreeter extends Feature {
+        private final Setting<String> msg = sg.add(new StringSetting.Builder()
+            .name("greeter-msg")
+            .description("The chat message saying hi to your joining friends.")
+            .defaultValue("Hello, %friend%!")
+            .build()
+        );
+
+        FriendGreeter() {
+            super("Friend Greeter", "friend-greeter-enabled", "Send msg when your Friend joins.");
+        }
+
+        void sendMsg() {
+            mc.player.sendChatMessage(msg.get().replace("%friend%", String.format("%.1f", friend)));
+        }
+    }*/
+
     private class Moving extends Feature {
         private final Setting<String> msg = sg.add(new StringSetting.Builder()
-                .name("moving-msg")
-                .description("The chat message for moving a certain amount of blocks.")
-                .defaultValue("I just moved {dist} blocks!")
-                .build()
+            .name("moving-msg")
+            .description("The chat message for moving a certain amount of blocks.")
+            .defaultValue("I just moved %distance% blocks!")
+            .build()
         );
 
         private final Setting<Double> delay = sg.add(new DoubleSetting.Builder()
-                .name("moving-delay")
-                .description("The amount of delay between moving messages in seconds.")
-                .defaultValue(10)
-                .sliderMax(60)
-                .build()
+            .name("moving-delay")
+            .description("The amount of delay between moving messages in seconds.")
+            .defaultValue(10)
+            .sliderMax(60)
+            .build()
         );
 
-        private final Setting<Double> minDist = sg.add(new DoubleSetting.Builder()
-                .name("moving-min-dist")
-                .description("The minimum distance for a moving message to send into chat.")
-                .defaultValue(10)
-                .sliderMax(100)
-                .build()
+        private final Setting<Double> minDistance = sg.add(new DoubleSetting.Builder()
+            .name("moving-min-distance")
+            .description("The minimum distance for a moving message to send into chat.")
+            .defaultValue(10)
+            .sliderMax(100)
+            .build()
         );
 
-        private double dist, timer;
+        private double distance, timer;
         private double lastX, lastZ;
         private boolean first;
 
@@ -124,7 +142,7 @@ public class Announcer extends Module {
 
         @Override
         void reset() {
-            dist = 0;
+            distance = 0;
             timer = 0;
             first = true;
         }
@@ -138,14 +156,14 @@ public class Announcer extends Module {
 
             double deltaX = mc.player.getX() - lastX;
             double deltaZ = mc.player.getZ() - lastZ;
-            dist += Math.sqrt(deltaX * deltaX + deltaZ * deltaZ);
+            distance += Math.sqrt(deltaX * deltaX + deltaZ * deltaZ);
 
             if (timer >= delay.get()) {
                 timer = 0;
 
-                if (dist >= minDist.get()) {
+                if (distance >= minDistance.get()) {
                     sendMsg();
-                    dist = 0;
+                    distance = 0;
                 }
             } else {
                 timer += TICK;
@@ -160,7 +178,7 @@ public class Announcer extends Module {
         }
 
         void sendMsg() {
-            mc.player.sendChatMessage(msg.get().replace("{dist}", String.format("%.1f", dist)));
+            mc.player.sendChatMessage(msg.get().replace("%distance%", String.format("%.1f", distance)));
         }
     }
 
@@ -168,7 +186,7 @@ public class Announcer extends Module {
         private final Setting<String> msg = sg.add(new StringSetting.Builder()
                 .name("mining-msg")
                 .description("The chat message for mining blocks.")
-                .defaultValue("I just mined {count} {block}!")
+                .defaultValue("I just mined %count% %block%!")
                 .build()
         );
 
@@ -211,7 +229,7 @@ public class Announcer extends Module {
 
         void sendMsg() {
             if (count > 0) {
-                mc.player.sendChatMessage(msg.get().replace("{count}", Integer.toString(count)).replace("{block}", lastBlock.getName().getString()));
+                mc.player.sendChatMessage(msg.get().replace("%count%", Integer.toString(count)).replace("%block%", lastBlock.getName().getString()));
                 count = 0;
             }
         }
@@ -221,7 +239,7 @@ public class Announcer extends Module {
         private final Setting<String> msg = sg.add(new StringSetting.Builder()
                 .name("placing-msg")
                 .description("The chat message for placing blocks.")
-                .defaultValue("I just placed {count} {block}!")
+                .defaultValue("I just placed %count% %block%!")
                 .build()
         );
 
@@ -262,7 +280,7 @@ public class Announcer extends Module {
 
         void sendMsg() {
             if (count > 0) {
-                mc.player.sendChatMessage(msg.get().replace("{count}", Integer.toString(count)).replace("{block}", lastBlock.getName().getString()));
+                mc.player.sendChatMessage(msg.get().replace("%count%", Integer.toString(count)).replace("%block%", lastBlock.getName().getString()));
                 count = 0;
             }
         }
@@ -272,7 +290,7 @@ public class Announcer extends Module {
         private final Setting<String> msg = sg.add(new StringSetting.Builder()
                 .name("drop-items-msg")
                 .description("The chat message for dropping items.")
-                .defaultValue("I just dropped {count} {item}!")
+                .defaultValue("I just dropped %count% %item%!")
                 .build()
         );
 
@@ -313,7 +331,7 @@ public class Announcer extends Module {
 
         void sendMsg() {
             if (count > 0) {
-                mc.player.sendChatMessage(msg.get().replace("{count}", Integer.toString(count)).replace("{item}", lastItem.getName().getString()));
+                mc.player.sendChatMessage(msg.get().replace("%count%", Integer.toString(count)).replace("%item%", lastItem.getName().getString()));
                 count = 0;
             }
         }
@@ -323,7 +341,7 @@ public class Announcer extends Module {
         private final Setting<String> msg = sg.add(new StringSetting.Builder()
                 .name("pick-items-msg")
                 .description("The chat message for picking up items.")
-                .defaultValue("I just picked up {count} {item}!")
+                .defaultValue("I just picked up %count% %item%!")
                 .build()
         );
 
@@ -364,7 +382,7 @@ public class Announcer extends Module {
 
         void sendMsg() {
             if (count > 0) {
-                mc.player.sendChatMessage(msg.get().replace("{count}", Integer.toString(count)).replace("{item}", lastItem.getName().getString()));
+                mc.player.sendChatMessage(msg.get().replace("%count%", Integer.toString(count)).replace("%item%", lastItem.getName().getString()));
                 count = 0;
             }
         }
@@ -374,7 +392,7 @@ public class Announcer extends Module {
         private final Setting<String> msg = sg.add(new StringSetting.Builder()
                 .name("open-container-msg")
                 .description("The chat message for opening a container.")
-                .defaultValue("I just opened {name}!")
+                .defaultValue("I just opened %name%!")
                 .build()
         );
 
@@ -397,7 +415,7 @@ public class Announcer extends Module {
         }
 
         void sendMsg(String name) {
-            mc.player.sendChatMessage(msg.get().replace("{name}", name));
+            mc.player.sendChatMessage(msg.get().replace("%name%", name));
         }
     }
 }
