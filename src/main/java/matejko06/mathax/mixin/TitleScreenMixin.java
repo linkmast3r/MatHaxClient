@@ -5,6 +5,8 @@ import matejko06.mathax.MatHaxClient;
 import matejko06.mathax.gui.GuiThemes;
 import matejko06.mathax.gui.screens.NewUpdateScreen;
 import matejko06.mathax.systems.config.Config;
+import matejko06.mathax.systems.modules.Modules;
+import matejko06.mathax.systems.modules.misc.NameProtect;
 import matejko06.mathax.utils.Utils;
 import matejko06.mathax.utils.network.MatHaxExecutor;
 import matejko06.mathax.utils.network.VersionHttpUtils;
@@ -14,7 +16,9 @@ import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.TitleScreen;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.Text;
+import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -22,46 +26,51 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(TitleScreen.class)
 public class TitleScreenMixin extends Screen {
 
+    @Shadow
+    @Final
+    private boolean doBackgroundFade;
     private static final String VERSION_URL = "http://api.mathaxclient.xyz/Version/";
 
     private final int RED = Color.fromRGBA(255, 0, 0, 255);
     private final int WHITE = Color.fromRGBA(255, 255, 255, 255);
     private final int GRAY = Color.fromRGBA(175, 175, 175, 255);
 
-    private String text1;
-    private int text1Length;
+    private String textLeftUp;
+    private int textLeftUpLength;
 
-    private String text2;
-    private int text2Length2;
+    private String textRightUp1;
+    private int textRightUp1Length;
 
-    private String text3;
-    private int text3Length3;
+    private String textRightUp2;
+    private int textRightUp2Length;
 
-    private String text4;
-    private int text4Length4;
+    private String textRightUp3;
 
-    private String text5;
-    private int text5Length5;
+    private int fullLengthRightUp;
+    private int prevWidthRightUp;
 
-    private String text6;
-    private int text6Length6;
+    private String textRightDown1;
+    private int textRightDown1Length;
 
-    private String text7;
-    private int text7Length7;
+    private String textRightDown2;
+    private int textRightDown2Length;
 
-    private String text8;
-    private int text8Length8;
+    private String textRightDown3;
+    private int textRightDown3Length;
 
-    private String text9;
-    private int text9Length9;
+    private String textRightDown4;
+    private int textRightDown4Length;
 
-    private String text10;
-    private int text10Length10;
+    private String textRightDown5;
+    private int textRightDown5Length;
 
-    private String text11;
+    private String textRightDown6;
+    private int textRightDown6Length;
 
-    private int fullLength;
-    private int prevWidth;
+    private String textRightDown7;
+
+    private int fullLengthRightDown;
+    private int prevWidthRightDown;
 
     public TitleScreenMixin(Text title) {
         super(title);
@@ -70,42 +79,46 @@ public class TitleScreenMixin extends Screen {
     @Inject(method = "init", at = @At("TAIL"))
     private void onInit(CallbackInfo info) {
 
-        text1 = "MatHax Client";
-        text2 = " ";
-        text3 = "v" + MatHaxClient.clientversion;
-        text4 = " ";
-        text5 = "by";
-        text6 = " ";
-        text7 = "Matejko06";
-        text8 = " ";
-        text9 = "&";
-        text10 = " ";
-        text11 = "GeekieCoder";
+        textLeftUp = "Logged in as ";
 
-        text1Length = textRenderer.getWidth(text1);
-        text2Length2 = textRenderer.getWidth(text2);
-        text3Length3 = textRenderer.getWidth(text3);
-        text4Length4 = textRenderer.getWidth(text4);
-        text5Length5 = textRenderer.getWidth(text5);
-        text6Length6 = textRenderer.getWidth(text6);
-        text7Length7 = textRenderer.getWidth(text7);
-        text8Length8 = textRenderer.getWidth(text8);
-        text9Length9 = textRenderer.getWidth(text9);
-        text10Length10 = textRenderer.getWidth(text10);
-        int text1Length = textRenderer.getWidth(text1);
-        int text2Length = textRenderer.getWidth(text2);
-        int text3Length = textRenderer.getWidth(text3);
-        int text4Length = textRenderer.getWidth(text4);
-        int text5Length = textRenderer.getWidth(text5);
-        int text6Length = textRenderer.getWidth(text6);
-        int text7Length = textRenderer.getWidth(text7);
-        int text8Length = textRenderer.getWidth(text8);
-        int text9Length = textRenderer.getWidth(text9);
-        int text10Length = textRenderer.getWidth(text10);
-        int text11Length = textRenderer.getWidth(text11);
+        textRightUp1 = "MatHax Client";
+        textRightUp2 = " ";
+        textRightUp3 = "v" + MatHaxClient.clientversion;
 
-        fullLength = text1Length + text2Length + text3Length + text4Length + text5Length + text6Length + text7Length + text8Length + text9Length + text10Length + text11Length;
-        prevWidth = 0;
+        textRightDown1 = "By";
+        textRightDown2 = " ";
+        textRightDown3 = "Matejko06";
+        textRightDown4 = " ";
+        textRightDown5 = "&";
+        textRightDown6 = " ";
+        textRightDown7 = "GeekieCoder";
+
+        textLeftUpLength = textRenderer.getWidth(textLeftUp);
+
+        textRightUp1Length = textRenderer.getWidth(textRightUp1);
+        textRightUp2Length = textRenderer.getWidth(textRightUp2);
+        int textRightUp1Length = textRenderer.getWidth(textRightUp1);
+        int textRightUp2Length = textRenderer.getWidth(textRightUp2);
+        int textRightUp3Length = textRenderer.getWidth(textRightUp3);
+
+        textRightDown1Length = textRenderer.getWidth(textRightDown1);
+        textRightDown2Length = textRenderer.getWidth(textRightDown2);
+        textRightDown3Length = textRenderer.getWidth(textRightDown3);
+        textRightDown4Length = textRenderer.getWidth(textRightDown4);
+        textRightDown5Length = textRenderer.getWidth(textRightDown5);
+        textRightDown6Length = textRenderer.getWidth(textRightDown6);
+        int textRightDown1Length = textRenderer.getWidth(textRightDown1);
+        int textRightDown2Length = textRenderer.getWidth(textRightDown2);
+        int textRightDown3Length = textRenderer.getWidth(textRightDown3);
+        int textRightDown4Length = textRenderer.getWidth(textRightDown4);
+        int textRightDown5Length = textRenderer.getWidth(textRightDown5);
+        int textRightDown6Length = textRenderer.getWidth(textRightDown6);
+        int textRightDown7Length = textRenderer.getWidth(textRightDown7);
+
+        fullLengthRightUp =  textRightUp1Length + textRightUp2Length + textRightUp3Length;
+        prevWidthRightUp = 0;
+        fullLengthRightDown = textRightDown1Length + textRightDown2Length + textRightDown3Length + textRightDown4Length + textRightDown5Length + textRightDown6Length + textRightDown7Length;
+        prevWidthRightDown = 0;
     }
 
     //TODO: Shows "com.g00fy2.versioncompare.Version@3f" as Client version and ignores higher version on the api website.
@@ -130,27 +143,31 @@ public class TitleScreenMixin extends Screen {
 
     @Inject(method = "render", at = @At("TAIL"))
     private void onRender(MatrixStack matrices, int mouseX, int mouseY, float delta, CallbackInfo info) {
-        prevWidth = 0;
-        textRenderer.drawWithShadow(matrices, text1, width - fullLength - 3, 3, RED);
-        prevWidth += text1Length;
-        textRenderer.drawWithShadow(matrices, text2, width - fullLength + prevWidth - 3, 3, WHITE);
-        prevWidth += text2Length2;
-        textRenderer.drawWithShadow(matrices, text3, width - fullLength + prevWidth - 3, 3, GRAY);
-        prevWidth += text3Length3;
-        textRenderer.drawWithShadow(matrices, text4, width - fullLength + prevWidth - 3, 3, WHITE);
-        prevWidth += text4Length4;
-        textRenderer.drawWithShadow(matrices, text5, width - fullLength + prevWidth - 3, 3, WHITE);
-        prevWidth += text5Length5;
-        textRenderer.drawWithShadow(matrices, text6, width - fullLength + prevWidth - 3, 3, WHITE);
-        prevWidth += text6Length6;
-        textRenderer.drawWithShadow(matrices, text7, width - fullLength + prevWidth - 3, 3, GRAY);
-        prevWidth += text7Length7;
-        textRenderer.drawWithShadow(matrices, text8, width - fullLength + prevWidth - 3, 3, WHITE);
-        prevWidth += text8Length8;
-        textRenderer.drawWithShadow(matrices, text9, width - fullLength + prevWidth - 3, 3, WHITE);
-        prevWidth += text9Length9;
-        textRenderer.drawWithShadow(matrices, text10, width - fullLength + prevWidth - 3, 3, WHITE);
-        prevWidth += text10Length10;
-        textRenderer.drawWithShadow(matrices, text11, width - fullLength + prevWidth - 3, 3, GRAY);
+
+        textRenderer.drawWithShadow(matrices, textLeftUp, 3, 3, WHITE);
+        textRenderer.drawWithShadow(matrices, Modules.get().get(NameProtect.class).getName(client.getSession().getUsername()), 3 + textLeftUpLength, 3, GRAY);
+
+        prevWidthRightUp = 0;
+        textRenderer.drawWithShadow(matrices, textRightUp1, width - fullLengthRightUp - 3, 3, RED);
+        prevWidthRightUp += textRightUp1Length;
+        textRenderer.drawWithShadow(matrices, textRightUp2, width - fullLengthRightUp + prevWidthRightUp - 3, 3, WHITE);
+        prevWidthRightUp += textRightUp2Length;
+        textRenderer.drawWithShadow(matrices, textRightUp3, width - fullLengthRightUp + prevWidthRightUp - 3, 3, GRAY);
+
+        prevWidthRightDown = 0;
+        textRenderer.drawWithShadow(matrices, textRightDown1, width - fullLengthRightDown - 3, 15, WHITE);
+        prevWidthRightDown += textRightDown1Length;
+        textRenderer.drawWithShadow(matrices, textRightDown2, width - fullLengthRightDown + prevWidthRightDown - 3, 15, WHITE);
+        prevWidthRightDown += textRightDown2Length;
+        textRenderer.drawWithShadow(matrices, textRightDown3, width - fullLengthRightDown + prevWidthRightDown - 3, 15, GRAY);
+        prevWidthRightDown += textRightDown3Length;
+        textRenderer.drawWithShadow(matrices, textRightDown4, width - fullLengthRightDown + prevWidthRightDown - 3, 15, WHITE);
+        prevWidthRightDown += textRightDown4Length;
+        textRenderer.drawWithShadow(matrices, textRightDown5, width - fullLengthRightDown + prevWidthRightDown - 3, 15, WHITE);
+        prevWidthRightDown += textRightDown5Length;
+        textRenderer.drawWithShadow(matrices, textRightDown6, width - fullLengthRightDown + prevWidthRightDown - 3, 15, WHITE);
+        prevWidthRightDown += textRightDown6Length;
+        textRenderer.drawWithShadow(matrices, textRightDown7, width - fullLengthRightDown + prevWidthRightDown - 3, 15, GRAY);
+
     }
 }

@@ -69,7 +69,7 @@ public class MatHaxClient implements ClientModInitializer {
     public static String versionNumber = "1.0.0";
     public static String devbuildNumber = "10";
 
-    public static String devbuild = " DevBuild " + devbuildNumber + " ";
+    public static String devbuild = " Dev Build " + devbuildNumber + " ";
     //public static String devbuild = "";
 
     public static String clientversion = versionNumber + devbuild;
