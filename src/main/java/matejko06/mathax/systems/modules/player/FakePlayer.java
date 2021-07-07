@@ -13,26 +13,26 @@ public class FakePlayer extends Module {
     private final SettingGroup sgGeneral = settings.getDefaultGroup();
 
     public final Setting<String> name = sgGeneral.add(new StringSetting.Builder()
-            .name("name")
-            .description("The name of the fake player.")
-            .defaultValue("Matejko06")
-            .build()
+        .name("name")
+        .description("The name of the fake player.")
+        .defaultValue("Matejko06")
+        .build()
     );
 
     public final Setting<Boolean> copyInv = sgGeneral.add(new BoolSetting.Builder()
-            .name("copy-inv")
-            .description("Copies your exact inventory to the fake player.")
-            .defaultValue(true)
-            .build()
+        .name("copy-inv")
+        .description("Copies your exact inventory to the fake player.")
+        .defaultValue(true)
+        .build()
     );
 
     public final Setting<Integer> health = sgGeneral.add(new IntSetting.Builder()
-            .name("health")
-            .description("The fake player's default health.")
-            .defaultValue(20)
-            .min(1)
-            .sliderMax(100)
-            .build()
+        .name("health")
+        .description("The fake player's default health.")
+        .defaultValue(20)
+        .min(1)
+        .sliderMax(100)
+        .build()
     );
 
     public FakePlayer() {
