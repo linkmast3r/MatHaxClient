@@ -210,7 +210,7 @@ public class Waypoints extends System<Waypoints> implements Iterable<Waypoint> {
     @Override
     public File getFile() {
         if (!Utils.canUpdate()) return null;
-        return new File(new File(MatHaxClient.PUBLIC_FOLDER, "WayPoints"), Utils.getWorldName() + ".nbt");
+        return new File(new File(MatHaxClient.FOLDER, "WayPoints"), Utils.getWorldName() + ".nbt");
     }
 
     @Override
