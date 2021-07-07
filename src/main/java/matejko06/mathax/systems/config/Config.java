@@ -37,7 +37,7 @@ public class Config extends System<Config> {
 
         version = new Version(versionString);
         DevBuildFullReleaseNotify = new Version("0.4.4");
-        devBuild = "11";
+        devBuild = "12";
     }
 
     public static Config get() {

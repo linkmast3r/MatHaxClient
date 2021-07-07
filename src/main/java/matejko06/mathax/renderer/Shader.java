@@ -37,7 +37,7 @@ public class Shader {
         int[] a = new int[1];
         glGetShaderiv(vert, GL_COMPILE_STATUS, a);
         if (a[0] == GL_FALSE) {
-            MatHaxClient.LOG.error("[MatHax] Failed to compile vertex shader (" + vertPath + "): " + glGetShaderInfoLog(vert));
+            MatHaxClient.LOG.error(MatHaxClient.logprefix + "Failed to compile vertex shader (" + vertPath + "): " + glGetShaderInfoLog(vert));
             throw new RuntimeException("Failed to compile vertex shader (" + vertPath + "): " + glGetShaderInfoLog(vert));
         }
 
@@ -47,7 +47,7 @@ public class Shader {
 
         glGetShaderiv(frag, GL_COMPILE_STATUS, a);
         if (a[0] == GL_FALSE) {
-            MatHaxClient.LOG.error("[MatHax] Failed to compile fragment shader (" + fragPath + "): " + glGetShaderInfoLog(frag));
+            MatHaxClient.LOG.error(MatHaxClient.logprefix + "Failed to compile fragment shader (" + fragPath + "): " + glGetShaderInfoLog(frag));
             throw new RuntimeException("Failed to compile fragment shader (" + fragPath + "): " + glGetShaderInfoLog(frag));
         }
 
@@ -58,7 +58,7 @@ public class Shader {
 
         glGetProgramiv(id, GL_LINK_STATUS, a);
         if (a[0] == GL_FALSE) {
-            MatHaxClient.LOG.error("[MatHax] Failed to link program: " + glGetProgramInfoLog(frag));
+            MatHaxClient.LOG.error(MatHaxClient.logprefix + "Failed to link program: " + glGetProgramInfoLog(frag));
             throw new RuntimeException("Failed to link program: " + glGetProgramInfoLog(frag));
         }
 

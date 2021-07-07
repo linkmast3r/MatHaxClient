@@ -47,6 +47,7 @@ import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.util.Window;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.lwjgl.system.CallbackI;
 
 import java.io.File;
 import java.io.IOException;
@@ -61,7 +62,7 @@ public class MatHaxClient implements ClientModInitializer {
     public static final IEventBus EVENT_BUS = new EventBus();
     public static final File MCCONFIG_FOLDER = new File(net.fabricmc.loader.FabricLoader.INSTANCE.getGameDirectory().toString(), "config/MatHax");
     public static final File PUBLIC_FOLDER = new File(FabricLoader.getInstance().getGameDir().toString(), "MatHax");
-    public static final File FOLDER = new File(FabricLoader.getInstance().getGameDir().toString(), "MatHax/" + getMinecraftVersion());
+    public static final File FOLDER = new File(PUBLIC_FOLDER + getMinecraftVersion());
     public static final Logger LOG = LogManager.getLogger();
 
     public static Screen screenToOpen;
@@ -69,9 +70,9 @@ public class MatHaxClient implements ClientModInitializer {
     public static String logprefix = "[MatHax] ";
 
     public static String versionNumber = "1.0.0";
-    public static String devbuildNumber = "11";
+    public static String devBuildNumber = "11";
 
-    public static String devbuild = " Dev Build " + devbuildNumber + " ";
+    public static String devbuild = " Dev Build " + devBuildNumber + " ";
     //public static String devbuild = "";
 
     public static String clientversion = versionNumber + devbuild;
@@ -97,6 +98,7 @@ public class MatHaxClient implements ClientModInitializer {
         for (EntrypointContainer<MatHaxAddon> entrypoint : FabricLoader.getInstance().getEntrypointContainers("MatHax", MatHaxAddon.class)) {
             addons.add(entrypoint.getEntrypoint());
         }
+        LOG.info(logprefix + "10% initialized!");
 
         IconExport.reset();
         IconExport.init();
@@ -111,24 +113,32 @@ public class MatHaxClient implements ClientModInitializer {
             }
         });
 
+        LOG.info(logprefix + "20% initialized!");
+
         Shaders.init();
         Renderer2D.init();
         Outlines.init();
+        LOG.info(logprefix + "30% initialized!");
 
         MatHaxExecutor.init();
         Capes.init();
+        LOG.info(logprefix + "40% initialized!");
         RainbowColors.init();
         BlockIterator.init();
         EChestMemory.init();
         Rotations.init();
+        LOG.info(logprefix + "50% initialized!");
         Names.init();
         FakeClientPlayer.init();
         PostProcessRenderer.init();
         Tabs.init();
+        LOG.info(logprefix + "60% initialized!");
         GuiThemes.init();
         Fonts.init();
         DamageUtils.init();
         BlockUtils.init();
+
+        LOG.info(logprefix + "70% initialized!");
 
         // Register categories
         Modules.REGISTERING_CATEGORIES = true;
@@ -137,6 +147,7 @@ public class MatHaxClient implements ClientModInitializer {
         Modules.REGISTERING_CATEGORIES = false;
 
         Systems.init();
+        LOG.info(logprefix + "80% initialized!");
 
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
             OnlinePlayers.leave();
@@ -144,6 +155,7 @@ public class MatHaxClient implements ClientModInitializer {
             GuiThemes.save();
         }));
 
+        LOG.info(logprefix + "90% initialized!");
         mc.getInstance().execute(this::updateTitleLoaded);
 
         EVENT_BUS.subscribe(this);
@@ -159,6 +171,7 @@ public class MatHaxClient implements ClientModInitializer {
         GuiRenderer.init();
         GuiThemes.postInit();
 
+        LOG.info(logprefix + "100% initialized!");
         mc.getInstance().execute(this::updateTitle);
 
         LOG.info(logprefix + "MatHax Client initialized!");

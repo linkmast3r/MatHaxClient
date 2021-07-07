@@ -88,7 +88,7 @@ public class HoleESP extends Module {
     private final Setting<Double> height = sgRender.add(new DoubleSetting.Builder()
             .name("height")
             .description("The height of rendering.")
-            .defaultValue(0.2)
+            .defaultValue(1)
             .min(0)
             .build()
     );
@@ -110,42 +110,42 @@ public class HoleESP extends Module {
     private final Setting<SettingColor> bedrockColorTop = sgRender.add(new ColorSetting.Builder()
             .name("bedrock-top")
             .description("The top color for holes that are completely bedrock.")
-            .defaultValue(new SettingColor(100, 255, 0, 200))
+            .defaultValue(new SettingColor(100, 255, 0, 100))
             .build()
     );
 
     private final Setting<SettingColor> bedrockColorBottom = sgRender.add(new ColorSetting.Builder()
             .name("bedrock-bottom")
             .description("The bottom color for holes that are completely bedrock.")
-            .defaultValue(new SettingColor(100, 255, 0, 0))
+            .defaultValue(new SettingColor(100, 255, 0, 100))
             .build()
     );
 
     private final Setting<SettingColor> obsidianColorTop = sgRender.add(new ColorSetting.Builder()
             .name("obsidian-top")
             .description("The top color for holes that are completely obsidian.")
-            .defaultValue(new SettingColor(255, 0, 0, 200))
+            .defaultValue(new SettingColor(255, 0, 0, 100))
             .build()
     );
 
     private final Setting<SettingColor> obsidianColorBottom = sgRender.add(new ColorSetting.Builder()
             .name("obsidian-bottom")
             .description("The bottom color for holes that are completely obsidian.")
-            .defaultValue(new SettingColor(255, 0, 0, 0))
+            .defaultValue(new SettingColor(255, 0, 0, 100))
             .build()
     );
 
     private final Setting<SettingColor> mixedColorTop = sgRender.add(new ColorSetting.Builder()
             .name("mixed-top")
             .description("The top color for holes that have mixed bedrock and obsidian.")
-            .defaultValue(new SettingColor(255, 127, 0, 200))
+            .defaultValue(new SettingColor(255, 127, 0, 100))
             .build()
     );
 
     private final Setting<SettingColor> mixedColorBottom = sgRender.add(new ColorSetting.Builder()
             .name("mixed-bottom")
             .description("The bottom color for holes that have mixed bedrock and obsidian.")
-            .defaultValue(new SettingColor(255, 127, 0, 0))
+            .defaultValue(new SettingColor(255, 127, 0, 100))
             .build()
     );
 

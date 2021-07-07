@@ -1,5 +1,6 @@
 package matejko06.mathax.utils.notebot;
 
+import matejko06.mathax.MatHaxClient;
 import matejko06.mathax.utils.notebot.nbs.Layer;
 import matejko06.mathax.utils.notebot.nbs.Note;
 import matejko06.mathax.utils.notebot.nbs.Song;
@@ -35,9 +36,9 @@ public class NBSDecoder {
             if (length != 0) return parseClassic(dis, decodeFile, length);
             else return parseOpenNBS(dis, decodeFile);
         } catch (FileNotFoundException e) {
-            LOG.error(e.getStackTrace());
+            LOG.error(MatHaxClient.logprefix + e.getStackTrace());
         } catch (IOException e) {
-            LOG.error(e.getStackTrace());
+            LOG.error(MatHaxClient.logprefix + e.getStackTrace());
         }
         return null;
     }

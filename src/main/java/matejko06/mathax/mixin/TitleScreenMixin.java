@@ -124,7 +124,7 @@ public class TitleScreenMixin extends Screen {
     private void onRenderTitleScreen(MatrixStack matrices, int mouseX, int mouseY, float delta, CallbackInfo info) {
         if (Utils.firstTimeTitleScreen) {
             Utils.firstTimeTitleScreen = false;
-            MatHaxClient.LOG.info("[MatHax] Checking latest version of MatHax Client...");
+            MatHaxClient.LOG.info(MatHaxClient.logprefix + "Checking latest version of MatHax Client...");
 
             /*MatHaxExecutor.execute(() -> {
                 String res = Http.get("http://api.mathaxclient.xyz/Version/1-17").sendString();
@@ -134,13 +134,13 @@ public class TitleScreenMixin extends Screen {
 
                 if (latestVer.isHigherThan(Config.get().DevBuildFullReleaseNotify)) {
                     Utils.mc.openScreen(new NewUpdateScreen(GuiThemes.get(), latestVer));
-                    //MatHaxClient.LOG.info("[MatHax] There is a new version of MatHax Client, v" + latestVer + "! You are using v" + MatHaxClient.clientversion + "!");
-                    MatHaxClient.LOG.info("[MatHax] There is a new Dev Build of MatHax Client! You are using v" + MatHaxClient.clientversion + "!");
+                    //MatHaxClient.LOG.info(MatHaxClient.logprefix + "There is a new version of MatHax Client, v" + latestVer + "! You are using v" + MatHaxClient.clientversion + "!");
+                    MatHaxClient.LOG.info(MatHaxClient.logprefix + "There is a new Dev Build of MatHax Client! You are using v" + MatHaxClient.clientversion + "!");
                 } else {
-                    MatHaxClient.LOG.info("[MatHax] You are using the latest Dev Build of MatHax Client, v" + MatHaxClient.clientversion + "!");
+                    MatHaxClient.LOG.info(MatHaxClient.logprefix + "You are using the latest Dev Build of MatHax Client, v" + MatHaxClient.clientversion + "!");
                 }
             });*/
-            MatHaxClient.LOG.info("[MatHax] Failed to check for latest update of MatHax Client. You can check for yourself on https://mathaxclient.xyz/. You are currently using v" + MatHaxClient.clientversion);
+            MatHaxClient.LOG.info(MatHaxClient.logprefix + "Failed to check for latest update of MatHax Client. You can check for yourself on https://mathaxclient.xyz/. You are currently using v" + MatHaxClient.clientversion);
         }
     }
 

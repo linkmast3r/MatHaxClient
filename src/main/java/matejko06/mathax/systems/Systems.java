@@ -51,12 +51,12 @@ public class Systems {
     }
 
     public static void save(File folder) {
-        MatHaxClient.LOG.info("[MatHax] Saving...");
+        MatHaxClient.LOG.info(MatHaxClient.logprefix + "Saving...");
         long start = java.lang.System.currentTimeMillis();
 
         for (System<?> system : systems.values()) system.save(folder);
 
-        MatHaxClient.LOG.info("[MatHax] Saved in {} milliseconds.", java.lang.System.currentTimeMillis() - start);
+        MatHaxClient.LOG.info(MatHaxClient.logprefix + "Saved in {} milliseconds.", java.lang.System.currentTimeMillis() - start);
     }
 
     public static void save() {
@@ -68,7 +68,7 @@ public class Systems {
     }
 
     public static void load(File folder) {
-        MatHaxClient.LOG.info("[MatHax] Loading...");
+        MatHaxClient.LOG.info(MatHaxClient.logprefix + "Loading...");
         long start = java.lang.System.currentTimeMillis();
 
         for (Runnable task : preLoadTasks) task.run();
@@ -77,7 +77,7 @@ public class Systems {
             if (system != config) system.load(folder);
         }
 
-        MatHaxClient.LOG.info("[MatHax] Loaded in {} milliseconds.", java.lang.System.currentTimeMillis() - start);
+        MatHaxClient.LOG.info(MatHaxClient.logprefix + "Loaded in {} milliseconds.", java.lang.System.currentTimeMillis() - start);
     }
 
     public static void load() {
