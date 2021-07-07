@@ -60,7 +60,7 @@ public class Modules extends System<Modules> {
     private Module moduleToBind;
 
     public Modules() {
-        super("modules");
+        super("Modules");
     }
 
     public static Modules get() {
@@ -447,6 +447,7 @@ public class Modules extends System<Modules> {
         add(new Spider());
         add(new Sprint());
         add(new Step());
+        add(new TridentBoost());
         add(new Velocity());
     }
 

@@ -12,6 +12,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(BiomeColors.class)
 public class BiomeColorsMixin {
+    /**
+     * @author Walaryne
+     */
     @Inject(method = "getWaterColor", at = @At("HEAD"), cancellable = true)
     private static void onGetWaterColor(BlockRenderView world, BlockPos pos, CallbackInfoReturnable<Integer> info) {
         Ambience ambience = Modules.get().get(Ambience.class);
@@ -21,6 +24,9 @@ public class BiomeColorsMixin {
         }
     }
 
+    /**
+     * @author Walaryne
+     */
     @Inject(method = "getFoliageColor", at = @At("HEAD"), cancellable = true)
     private static void onGetFoliageColor(BlockRenderView world, BlockPos pos, CallbackInfoReturnable<Integer> info) {
         Ambience ambience = Modules.get().get(Ambience.class);
@@ -30,6 +36,9 @@ public class BiomeColorsMixin {
         }
     }
 
+    /**
+     * @author Walaryne
+     */
     @Inject(method = "getGrassColor", at = @At("HEAD"), cancellable = true)
     private static void onGetGrassColor(BlockRenderView world, BlockPos pos, CallbackInfoReturnable<Integer> info) {
         Ambience ambience = Modules.get().get(Ambience.class);

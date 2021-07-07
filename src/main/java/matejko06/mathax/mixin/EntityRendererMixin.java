@@ -4,6 +4,7 @@ import matejko06.mathax.mixininterface.IEntityRenderer;
 import matejko06.mathax.systems.modules.Modules;
 import matejko06.mathax.systems.modules.render.Nametags;
 import matejko06.mathax.systems.modules.render.NoRender;
+import matejko06.mathax.utils.Utils;
 import net.minecraft.client.render.Frustum;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.entity.EntityRenderer;
@@ -34,6 +35,11 @@ public abstract class EntityRendererMixin<T extends Entity> implements IEntityRe
     private void shouldRender(T entity, Frustum frustum, double x, double y, double z, CallbackInfoReturnable<Boolean> cir) {
         if (Modules.get().get(NoRender.class).noEntity(entity)) cir.cancel();
         if (Modules.get().get(NoRender.class).noFallingBlocks() && entity instanceof FallingBlockEntity) cir.cancel();
+    }
+
+    @Inject(method = "getSkyLight", at = @At("RETURN"), cancellable = true)
+    private void onGetSkyLight(CallbackInfoReturnable<Integer> info) {
+        info.setReturnValue(Math.max(Utils.minimumLightLevel, info.getReturnValueI()));
     }
 
     @Override

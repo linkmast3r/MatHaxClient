@@ -5,8 +5,11 @@ import matejko06.mathax.MatHaxClient;
 import java.io.*;
 
 public class IconExport {
+
+    private static final File ICONS_FOLDER = new File(MatHaxClient.MCCONFIG_FOLDER, "Icons/Window");
+
     public static void reset() {
-        File[] files = MatHaxClient.FOLDER.exists() ? MatHaxClient.FOLDER.listFiles() : new File[0];
+        File[] files = ICONS_FOLDER.exists() ? ICONS_FOLDER.listFiles() : new File[0];
         if (files != null) {
             for (File file : files) {
                 if (file.getName().endsWith(".png") || file.getName().endsWith(".PNG")) {
@@ -17,7 +20,7 @@ public class IconExport {
     }
 
     public static void init() {
-        File[] files = MatHaxClient.FOLDER.exists() ? MatHaxClient.FOLDER.listFiles() : new File[0];
+        File[] files = ICONS_FOLDER.exists() ? ICONS_FOLDER.listFiles() : new File[0];
         File iconFile = null;
         File iconFile2 = null;
         File iconFile3 = null;
@@ -36,7 +39,7 @@ public class IconExport {
 
         if (iconFile == null) {
             try {
-                iconFile = new File(MatHaxClient.FOLDER + "/textures/icons/window", "icon16.png");
+                iconFile = new File(ICONS_FOLDER, "icon16.png");
                 iconFile.getParentFile().mkdirs();
 
                 InputStream in = MatHaxClient.class.getResourceAsStream("/assets/mathax/textures/icons/window/icon16.png");
@@ -55,7 +58,7 @@ public class IconExport {
         if (iconFile2 == null) {
             try {
 
-                iconFile2 = new File(MatHaxClient.FOLDER + "/textures/icons/window", "icon32.png");
+                iconFile2 = new File(ICONS_FOLDER, "icon32.png");
                 iconFile2.getParentFile().mkdirs();
 
                 InputStream in = MatHaxClient.class.getResourceAsStream("/assets/mathax/textures/icons/window/icon32.png");
@@ -74,7 +77,7 @@ public class IconExport {
         if (iconFile3 == null) {
             try {
 
-                iconFile3 = new File(MatHaxClient.FOLDER + "/textures/icons/window", "icon64.png");
+                iconFile3 = new File(ICONS_FOLDER, "icon64.png");
                 iconFile3.getParentFile().mkdirs();
 
                 InputStream in = MatHaxClient.class.getResourceAsStream("/assets/mathax/textures/icons/window/icon64.png");
@@ -93,7 +96,7 @@ public class IconExport {
         if (iconFile4 == null) {
             try {
 
-                iconFile4 = new File(MatHaxClient.FOLDER + "/textures/icons/window", "icon128.png");
+                iconFile4 = new File(ICONS_FOLDER, "icon128.png");
                 iconFile4.getParentFile().mkdirs();
 
                 InputStream in = MatHaxClient.class.getResourceAsStream("/assets/mathax/textures/icons/window/icon128.png");

@@ -11,6 +11,9 @@ public class SodiumFluidRendererMixin {
     @Shadow(remap = false)
     private int[] quadColors;
 
+    /**
+     * @author Walaryne
+     */
     /*@Inject(method = "calculateQuadColors", at = @At("TAIL"), cancellable = true, remap = false)
     private void onCalculateQuadColors(ModelQuadView quad, BlockRenderView world, BlockPos pos, LightPipeline lighter, Direction dir, float brightness, boolean colorized, CallbackInfo info) {
         Ambience ambience = Modules.get().get(Ambience.class);

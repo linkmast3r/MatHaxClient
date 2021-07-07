@@ -59,7 +59,9 @@ import static matejko06.mathax.utils.Utils.mc;
 public class MatHaxClient implements ClientModInitializer {
     public static MatHaxClient INSTANCE;
     public static final IEventBus EVENT_BUS = new EventBus();
-    public static final File FOLDER = new File(FabricLoader.getInstance().getGameDir().toString(), "MatHax");
+    public static final File MCCONFIG_FOLDER = new File(net.fabricmc.loader.FabricLoader.INSTANCE.getGameDirectory().toString(), "config/MatHax");
+    public static final File PUBLIC_FOLDER = new File(FabricLoader.getInstance().getGameDir().toString(), "MatHax");
+    public static final File FOLDER = new File(FabricLoader.getInstance().getGameDir().toString(), "MatHax/" + getMinecraftVersion());
     public static final Logger LOG = LogManager.getLogger();
 
     public static Screen screenToOpen;
@@ -67,7 +69,7 @@ public class MatHaxClient implements ClientModInitializer {
     public static String logprefix = "[MatHax] ";
 
     public static String versionNumber = "1.0.0";
-    public static String devbuildNumber = "10";
+    public static String devbuildNumber = "11";
 
     public static String devbuild = " Dev Build " + devbuildNumber + " ";
     //public static String devbuild = "";
@@ -86,7 +88,7 @@ public class MatHaxClient implements ClientModInitializer {
             return;
         }
 
-        LOG.info(logprefix + "Initializing MatHax Client");
+        LOG.info(logprefix + "Initializing MatHax Client...");
 
         Utils.mc = MinecraftClient.getInstance();
         EVENT_BUS.registerLambdaFactory("matejko06.mathax", (lookupInMethod, klass) -> (MethodHandles.Lookup) lookupInMethod.invoke(null, klass, MethodHandles.lookup()));
@@ -166,7 +168,7 @@ public class MatHaxClient implements ClientModInitializer {
 
     public MatHaxClient() throws IOException {
 
-        windowimageconfig = WindowImage.read(FOLDER + "/textures/icons/window");
+        windowimageconfig = WindowImage.read(MCCONFIG_FOLDER + "/Icons/Window");
 
     }
 

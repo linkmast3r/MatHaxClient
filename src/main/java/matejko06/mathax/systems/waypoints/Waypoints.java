@@ -53,7 +53,7 @@ public class Waypoints extends System<Waypoints> implements Iterable<Waypoint> {
 
     @Override
     public void init() {
-        File iconsFolder = new File(new File(MatHaxClient.FOLDER, "waypoints"), "icons");
+        File iconsFolder = new File(new File(MatHaxClient.MCCONFIG_FOLDER, "Icons"), "WayPoints");
         iconsFolder.mkdirs();
 
         for (String builtinIcon : BUILTIN_ICONS) {
@@ -210,7 +210,7 @@ public class Waypoints extends System<Waypoints> implements Iterable<Waypoint> {
     @Override
     public File getFile() {
         if (!Utils.canUpdate()) return null;
-        return new File(new File(MatHaxClient.FOLDER, "waypoints"), Utils.getWorldName() + ".nbt");
+        return new File(new File(MatHaxClient.PUBLIC_FOLDER, "WayPoints"), Utils.getWorldName() + ".nbt");
     }
 
     @Override

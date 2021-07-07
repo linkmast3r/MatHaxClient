@@ -21,7 +21,7 @@ public class Friends extends System<Friends> implements Iterable<Friend> {
     public boolean attack = false;
 
     public Friends() {
-        super("friends");
+        super("Friends");
     }
 
     public static Friends get() {

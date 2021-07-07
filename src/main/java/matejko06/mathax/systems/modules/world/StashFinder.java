@@ -17,6 +17,7 @@ import matejko06.mathax.systems.modules.Categories;
 import matejko06.mathax.systems.modules.Module;
 import matejko06.mathax.utils.Utils;
 import matejko06.mathax.bus.EventHandler;
+import net.minecraft.SharedConstants;
 import net.minecraft.block.entity.*;
 import net.minecraft.client.toast.Toast;
 import net.minecraft.client.toast.ToastManager;
@@ -79,7 +80,11 @@ public class StashFinder extends Module {
     public List<Chunk> chunks = new ArrayList<>();
 
     public StashFinder() {
-        super(Categories.World, "stash-finder", "Searches loaded chunks for storage blocks. Saves to <your minecraft folder>/mathax");
+        super(Categories.World, "stash-finder", "Searches loaded chunks for storage blocks. Saves to <your Minecraft folder>/MatHax/" + getMinecraftVersion() + "/Stashes");
+    }
+
+    static String getMinecraftVersion(){
+        return SharedConstants.getGameVersion().getName();
     }
 
     @Override
@@ -270,11 +275,11 @@ public class StashFinder extends Module {
     }
 
     private File getJsonFile() {
-        return new File(new File(new File(MatHaxClient.FOLDER, "stashes"), Utils.getWorldName()), "stashes.json");
+        return new File(new File(new File(MatHaxClient.FOLDER, "Stashes"), Utils.getWorldName()), "Stashes.json");
     }
 
     private File getCsvFile() {
-        return new File(new File(new File(MatHaxClient.FOLDER, "stashes"), Utils.getWorldName()), "stashes.csv");
+        return new File(new File(new File(MatHaxClient.FOLDER, "Stashes"), Utils.getWorldName()), "Stashes.csv");
     }
 
     public static class Chunk {

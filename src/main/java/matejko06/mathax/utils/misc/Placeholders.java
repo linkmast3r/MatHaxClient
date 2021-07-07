@@ -1,5 +1,6 @@
 package matejko06.mathax.utils.misc;
 
+import matejko06.mathax.MatHaxClient;
 import matejko06.mathax.systems.config.Config;
 import matejko06.mathax.utils.Utils;
 import net.minecraft.SharedConstants;
@@ -28,7 +29,7 @@ public class Placeholders {
 
     private static String getReplacement(String placeholder) {
         switch (placeholder) {
-            case "%version%":    return Config.get().version != null ? (Config.get().devBuild.isEmpty() ? Config.get().version.getOriginalString() : Config.get().version.getOriginalString() + " " + Config.get().devBuild) : "";
+            case "%version%":    return MatHaxClient.clientversion;
             case "%mc_version%": return SharedConstants.getGameVersion().getName();
             case "%player%":
             case "%username%":   return mc.getSession().getUsername();

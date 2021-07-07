@@ -1,10 +1,10 @@
 package matejko06.mathax.systems.config;
 
-import com.g00fy2.versioncompare.Version;
 import matejko06.mathax.gui.tabs.builtin.ConfigTab;
 import matejko06.mathax.settings.Setting;
 import matejko06.mathax.systems.System;
 import matejko06.mathax.systems.Systems;
+import matejko06.mathax.utils.misc.Version;
 import matejko06.mathax.utils.render.color.RainbowColors;
 import net.fabricmc.loader.api.FabricLoader;
 import net.fabricmc.loader.api.metadata.ModMetadata;
@@ -12,6 +12,7 @@ import net.minecraft.nbt.NbtCompound;
 
 public class Config extends System<Config> {
     public final Version version;
+    public final Version DevBuildFullReleaseNotify;
     public final String devBuild;
 
     public String font = ConfigTab.font.get();
@@ -27,7 +28,7 @@ public class Config extends System<Config> {
     public boolean useTeamColor = ConfigTab.useTeamColor.get();
 
     public Config() {
-        super("config");
+        super("Config");
 
         ModMetadata metadata = FabricLoader.getInstance().getModContainer("mathax").get().getMetadata();
 
@@ -35,7 +36,8 @@ public class Config extends System<Config> {
         if (versionString.contains("-")) versionString = versionString.split("-")[0];
 
         version = new Version(versionString);
-        devBuild = "10";
+        DevBuildFullReleaseNotify = new Version("0.4.4");
+        devBuild = "11";
     }
 
     public static Config get() {
@@ -45,7 +47,7 @@ public class Config extends System<Config> {
     @Override
     public NbtCompound toTag() {
         NbtCompound tag = new NbtCompound();
-        tag.putString("version", version.getOriginalString());
+        tag.putString("version", version.toString());
 
         tag.putString("font", font);
         tag.putBoolean("customFont", customFont);

@@ -69,7 +69,7 @@ public class TheAlteningAccount extends Account<TheAlteningAccount> {
             cache.username = auth.getSelectedProfile().getName();
             return true;
         } catch (AuthenticationException e) {
-            MatHaxClient.LOG.error("Failed to login with TheAltening.");
+            MatHaxClient.LOG.error("[MatHax] Failed to login with TheAltening.");
             return false;
         }
     }

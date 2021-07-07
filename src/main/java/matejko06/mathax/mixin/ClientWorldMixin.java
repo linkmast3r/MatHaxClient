@@ -38,6 +38,9 @@ public abstract class ClientWorldMixin {
         if (getEntityById(entityId) != null) MatHaxClient.EVENT_BUS.post(EntityRemovedEvent.get(getEntityById(entityId)));
     }
 
+    /**
+     * @author Walaryne
+     */
     @Inject(method = "getSkyProperties", at = @At("HEAD"), cancellable = true)
     private void onGetSkyProperties(CallbackInfoReturnable<SkyProperties> info) {
         Ambience ambience = Modules.get().get(Ambience.class);
@@ -46,6 +49,10 @@ public abstract class ClientWorldMixin {
             info.setReturnValue(ambience.customSkyColor.get() ? customSky : endSky);
         }
     }
+
+    /**
+     * @author Walaryne
+     */
     @Inject(method = "method_23777", at = @At("HEAD"), cancellable = true)
     private void onGetSkyColor(Vec3d vec3d, float f, CallbackInfoReturnable<Vec3d> info) {
         Ambience ambience = Modules.get().get(Ambience.class);
@@ -55,6 +62,9 @@ public abstract class ClientWorldMixin {
         }
     }
 
+    /**
+     * @author Walaryne
+     */
     @Inject(method = "getCloudsColor", at = @At("HEAD"), cancellable = true)
     private void onGetCloudsColor(float tickDelta, CallbackInfoReturnable<Vec3d> info) {
         Ambience ambience = Modules.get().get(Ambience.class);

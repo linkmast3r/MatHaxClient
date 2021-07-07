@@ -25,6 +25,9 @@ public abstract class DisconnectedScreenMixin extends Screen {
 
     @Unique
     private ButtonWidget reconnectBtn;
+    //private ButtonWidget autoReconnectBtn;
+
+    //private double time = Modules.get().get(AutoReconnect.class).time.get() * 20;
 
     protected DisconnectedScreenMixin(Text title) {
         super(title);
@@ -35,8 +38,29 @@ public abstract class DisconnectedScreenMixin extends Screen {
         if (Modules.get().get(AutoReconnect.class).lastServerInfo != null) {
             int x = width / 2 - 100;
             int y = Math.min((height / 2 + reasonHeight / 2) + 32, height - 30);
+            /*int x2 = width / 2 - 100;
+            int y2 = Math.min((height / 2 + reasonHeight / 2) + 56, height - 30);*/
 
             reconnectBtn = addDrawableChild(new ButtonWidget(x, y, 200, 20, new LiteralText("Reconnect"), button -> ConnectScreen.connect(new MultiplayerScreen(new TitleScreen()), client, ServerAddress.parse(Modules.get().get(AutoReconnect.class).lastServerInfo.address), MinecraftClient.getInstance().getCurrentServerEntry())));
+            //autoReconnectBtn = addDrawableChild(new ButtonWidget(x2, y2, 200, 20, new LiteralText("Auto Reconnect"), button -> ConnectScreen.connect(new MultiplayerScreen(new TitleScreen()), client, ServerAddress.parse(Modules.get().get(AutoReconnect.class).lastServerInfo.address), Modules.get().get(AutoReconnect.class).lastServerInfo)));
         }
     }
+
+    /*@Override
+    public void tick() {
+        if (!Modules.get().isActive(AutoReconnect.class)) return;
+
+        if (time <= 0) {
+            ConnectScreen.connect(new MultiplayerScreen(new TitleScreen()), client, ServerAddress.parse(Modules.get().get(AutoReconnect.class).lastServerInfo.address), Modules.get().get(AutoReconnect.class).lastServerInfo);
+        } else {
+            time--;
+            if (autoReconnectBtn != null) ((AbstractButtonWidgetAccessor) autoReconnectBtn).setText(new LiteralText(getText()));
+        }
+    }
+
+    private String getText() {
+        String reconnectText = "Auto Reconnect";
+        if (Modules.get().isActive(AutoReconnect.class)) reconnectText = "Reconnecting in " + String.format("(%.1f)", time / 20);
+        return reconnectText;
+    }*/
 }

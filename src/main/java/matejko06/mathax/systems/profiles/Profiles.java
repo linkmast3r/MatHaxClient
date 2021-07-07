@@ -16,11 +16,11 @@ import java.util.List;
 
 public class Profiles extends System<Profiles> implements Iterable<Profile> {
 
-    public static final File FOLDER = new File(MatHaxClient.FOLDER, "profiles");
+    public static final File FOLDER = new File(MatHaxClient.FOLDER, "Profiles");
     private List<Profile> profiles = new ArrayList<>();
 
     public Profiles() {
-        super("profiles");
+        super("Profiles");
     }
 
     public static Profiles get() {
@@ -54,7 +54,7 @@ public class Profiles extends System<Profiles> implements Iterable<Profile> {
 
     @Override
     public File getFile() {
-        return new File(FOLDER, "profiles.nbt");
+        return new File(FOLDER, "Profiles.nbt");
     }
 
     @Override

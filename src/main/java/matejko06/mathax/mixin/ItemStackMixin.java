@@ -3,7 +3,7 @@ package matejko06.mathax.mixin;
 import matejko06.mathax.MatHaxClient;
 import matejko06.mathax.events.entity.player.FinishUsingItemEvent;
 import matejko06.mathax.events.entity.player.StoppedUsingItemEvent;
-import matejko06.mathax.events.game.GetTooltipEvent;
+import matejko06.mathax.events.game.ItemStackTooltipEvent;
 import matejko06.mathax.utils.Utils;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.LivingEntity;
@@ -27,7 +27,7 @@ public abstract class ItemStackMixin {
     @Inject(method = "getTooltip", at = @At("TAIL"), locals = LocalCapture.CAPTURE_FAILSOFT)
     private void onGetTooltip(PlayerEntity player, TooltipContext context, CallbackInfoReturnable<List<Text>> info, List<Text> list) {
         if (Utils.canUpdate()) {
-            MatHaxClient.EVENT_BUS.post(GetTooltipEvent.Append.get((ItemStack) (Object) this, list));
+            MatHaxClient.EVENT_BUS.post(ItemStackTooltipEvent.get((ItemStack) (Object) this, list));
         }
     }
 

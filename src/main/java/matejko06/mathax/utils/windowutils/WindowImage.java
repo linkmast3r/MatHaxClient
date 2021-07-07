@@ -23,13 +23,10 @@ public final class WindowImage {
         final String icon64 = "icon64.png";
         final String icon128 = "icon128.png";
 
-        /*final String icon16 = "";
-        final String icon32 = "";*/
-
-        final Path pathIcon16 = Paths.get(/*FabricLoader.getInstance().getClass().getResource("assets/textures/icons/window/icon16.png").toString()*/folder, icon16);
-        final Path pathIcon32 = Paths.get(/*FabricLoader.getInstance().getClass().getResource("assets/textures/icons/window/icon32.png").toString()*/folder, icon32);
-        final Path pathIcon64 = Paths.get(/*FabricLoader.getInstance().getClass().getResource("assets/textures/icons/window/icon64.png").toString()*/folder, icon64);
-        final Path pathIcon128 = Paths.get(/*FabricLoader.getInstance().getClass().getResource("assets/textures/icons/window/icon128.png").toString()*/folder, icon128);
+        final Path pathIcon16 = Paths.get(folder, icon16);
+        final Path pathIcon32 = Paths.get(folder, icon32);
+        final Path pathIcon64 = Paths.get(folder, icon64);
+        final Path pathIcon128 = Paths.get(folder, icon128);
 
         return new WindowImage(pathIcon16, pathIcon32, pathIcon64, pathIcon128);
     }

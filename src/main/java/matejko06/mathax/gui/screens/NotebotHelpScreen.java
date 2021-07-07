@@ -10,7 +10,7 @@ public class NotebotHelpScreen extends WindowScreen {
 
         add(theme.label("Loading songs", true)).widget();
         add(theme.label("To load songs you need to put a file with supported format inside: "));
-        add(theme.label(String.format(" \"%s\"", MatHaxClient.FOLDER.toPath().resolve("notebot"))));
+        add(theme.label(String.format(" \"%s\"", MatHaxClient.FOLDER.toPath().resolve("Notebot"))));
 
         add(theme.label("Supported formats", true)).padTop(10);
         add(theme.label("- Classic .nbs files"));

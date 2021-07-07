@@ -1,5 +1,6 @@
 package matejko06.mathax.mixin;
 
+import matejko06.mathax.MatHaxClient;
 import matejko06.mathax.systems.config.Config;
 import matejko06.mathax.systems.modules.Category;
 import matejko06.mathax.systems.modules.Module;
@@ -19,17 +20,13 @@ public class CrashReportMixin {
         if (Modules.get() != null) {
             sb.append("\n\n");
             sb.append("-- MatHax Client --\n");
-            sb.append("Version: ").append(Config.get().version.getOriginalString()).append("\n");
-
-            if (!Config.get().devBuild.isEmpty()) {
-                sb.append("Dev Build: ").append(Config.get().devBuild).append("\n");
-            }
+            sb.append("Version: ").append(MatHaxClient.clientversion).append("\n");
 
             for (Category category : Modules.loopCategories()) {
                 List<Module> modules = Modules.get().getGroup(category);
                 boolean active = false;
                 for (Module module : modules) {
-                    if (module instanceof Module && module.isActive()) {
+                    if (module != null && module.isActive()) {
                         active = true;
                         break;
                     }

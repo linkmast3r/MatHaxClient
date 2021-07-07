@@ -29,7 +29,7 @@ public class ConfigTab extends Tab {
 
     public static final Setting<String> font = sgGeneral.add(new ProvidedStringSetting.Builder()
             .name("font")
-            .description("Custom font to use (picked from .minecraft/MatHax/fonts folder).")
+            .description("Custom font to use (picked from .minecraft/config/MatHax/Fonts folder).")
             .supplier(Fonts::getAvailableFonts)
             .defaultValue(Fonts.DEFAULT_FONT)
             .onChanged(s -> {

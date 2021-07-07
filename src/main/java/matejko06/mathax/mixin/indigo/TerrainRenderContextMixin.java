@@ -19,7 +19,7 @@ public class TerrainRenderContextMixin {
         Xray xray = Modules.get().get(Xray.class);
 
         if (xray.isActive() && xray.isBlocked(blockState.getBlock())) {
-            info.cancel();
+//            info.cancel();
         }
     }
 }

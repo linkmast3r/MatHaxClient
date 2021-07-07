@@ -19,7 +19,7 @@ public class Accounts extends System<Accounts> implements Iterable<Account<?>> {
     private List<Account<?>> accounts = new ArrayList<>();
 
     public Accounts() {
-        super("accounts");
+        super("Accounts");
     }
 
     public static Accounts get() {

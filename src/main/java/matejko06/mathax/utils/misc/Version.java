@@ -9,13 +9,13 @@ public class Version {
         this.numbers = new int[3];
 
         String[] split = string.split("\\.");
-        if (split.length != 3) throw new IllegalArgumentException("Version string needs to have 3 numbers.");
+        if (split.length != 3) throw new IllegalArgumentException("[MatHax] Failed to check for latest MatHax version: Version string needs to have 3 numbers.");
 
         for (int i = 0; i < 3; i++) {
             try {
                 numbers[i] = Integer.parseInt(split[i]);
             } catch (NumberFormatException e) {
-                throw new IllegalArgumentException("Failed to parse version string.");
+                throw new IllegalArgumentException("[MatHax] Failed to check for latest MatHax version: Failed to parse version string.");
             }
         }
     }

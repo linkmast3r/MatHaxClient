@@ -65,6 +65,7 @@ public class Utils {
     public static final Color WHITE = new Color(255, 255, 255);
     public static boolean rendering3D = true;
     public static boolean renderingEntityOutline = false;
+    public static int minimumLightLevel;
 
     static {
         df = new DecimalFormat("0");
@@ -100,7 +101,7 @@ public class Utils {
         return Math.max(mc.options.viewDistance, ((ClientPlayNetworkHandlerAccessor) mc.getNetworkHandler()).getChunkLoadDistance());
     }
 
-    public static void addMatHaxPvpToServerList() {
+    public static void addMatHaxPVPToServerList() {
         ServerList servers = new ServerList(mc);
         servers.loadFile();
 
@@ -288,6 +289,7 @@ public class Utils {
             case GLFW_KEY_LEFT_SUPER: return "Left Super";
             case GLFW_KEY_RIGHT_SUPER: return "Right Super";
             case GLFW_KEY_ENTER: return "Enter";
+            case GLFW_KEY_KP_ENTER: return "Numpad Enter";
             case GLFW_KEY_NUM_LOCK: return "Num Lock";
             case GLFW_KEY_SPACE: return "Space";
             case GLFW_KEY_F1: return "F1";

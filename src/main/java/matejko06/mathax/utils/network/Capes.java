@@ -105,7 +105,7 @@ public class Capes {
         private int retryTimer;
 
         public Cape(String name) {
-            super("meteor-client", "capes/" + name);
+            super("mathax", "capes/" + name);
 
             this.name = name;
         }

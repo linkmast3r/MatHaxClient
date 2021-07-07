@@ -23,9 +23,7 @@ public abstract class ChatHudMixin implements IChatHud {
 
     @Inject(at = @At("HEAD"), method = "addMessage(Lnet/minecraft/text/Text;I)V", cancellable = true)
     private void onAddMessage(Text text, int id, CallbackInfo info) {
-        ReceiveMessageEvent event = MatHaxClient.EVENT_BUS.post(ReceiveMessageEvent.get(text, id));
-
-        if (event.isCancelled()) info.cancel();
+        if (MatHaxClient.EVENT_BUS.post(ReceiveMessageEvent.get(text, id)).isCancelled()) info.cancel();
     }
 
     @Redirect(method = "addMessage(Lnet/minecraft/text/Text;IIZ)V", at = @At(value = "INVOKE", target = "Ljava/util/List;size()I"))

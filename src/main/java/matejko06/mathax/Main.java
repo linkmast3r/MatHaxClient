@@ -17,7 +17,7 @@ public class Main {
 
         int option = JOptionPane.showOptionDialog(
                 null,
-                "To install MatHax Client you need to put it in your mods folder and run Fabric for Minecraft version 1.17.",
+                "To install MatHax Client you need to put it in your mods folder and run Fabric for Minecraft version 1.17.1.",
                 "MatHax Client",
                 JOptionPane.YES_NO_CANCEL_OPTION,
                 JOptionPane.ERROR_MESSAGE,

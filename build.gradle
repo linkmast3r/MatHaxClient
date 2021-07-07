@@ -37,7 +37,8 @@ dependencies {
 	modImplementation fabricApi.module("fabric-renderer-indigo", project.api_version)
 
 	// For XRay compatibility
-	//modImplementation "com.github.CaffeineMC:sodium-fabric:${project.sodium_version}"
+    //modImplementation "com.github.CaffeineMC:sodium-fabric:${project.sodium_version}"
+    modCompileOnly "com.github.MeteorDevelopment:sodium-fabric:${project.sodium_version}"
 
 	// Baritone (the fork is standalone baritone and the only change is a setting to build it as fabric mod instead of forge one)
 	/*modImplementation("com.github.MeteorDevelopment:baritone:${project.baritone_version}") {
@@ -51,7 +52,6 @@ dependencies {
 	include "com.github.MeteorDevelopment:baritone:${project.baritone_version}"*/
 
 	// Other dependencies
-	dependency "com.g00fy2:versioncompare:${project.versioncompare_version}"
 	dependency "com.github.minndevelopment:java-discordrpc:${project.discordrpc_version}"
 }
 
@@ -67,8 +67,6 @@ processResources {
     from(sourceSets.main.resources.srcDirs) {
 		include "fabric.mod.json"
 		expand "version": project.version
-
-		filter { line -> line.replace("@devbuild@", System.getenv("CIRCLE_BUILD_NUM") != null ? System.getenv("CIRCLE_BUILD_NUM") : "") }
 	}
 
 	from(sourceSets.main.resources.srcDirs) {

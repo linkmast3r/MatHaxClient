@@ -14,6 +14,9 @@ import org.spongepowered.asm.mixin.injection.ModifyVariable;
 
 @Mixin(FluidRenderer.class)
 public class FluidRendererMixin {
+    /**
+     * @author Walaryne
+     */
     @ModifyVariable(method = "render", at = @At(value = "STORE", ordinal = 0), index = 8)
     private int modifyColorIfLava(int color, BlockRenderView world, BlockPos pos, VertexConsumer vertexConsumer, FluidState state) {
         Ambience ambience = Modules.get().get(Ambience.class);

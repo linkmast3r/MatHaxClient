@@ -14,7 +14,7 @@ public class Proxies extends System<Proxies> implements Iterable<Proxy> {
     private List<Proxy> proxies = new ArrayList<>();
 
     public Proxies() {
-        super("proxies");
+        super("Proxies");
     }
 
     public static Proxies get() {

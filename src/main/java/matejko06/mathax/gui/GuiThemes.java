@@ -12,9 +12,9 @@ import java.util.Iterator;
 import java.util.List;
 
 public class GuiThemes {
-    private static final File FOLDER = new File(MatHaxClient.FOLDER, "gui");
-    private static final File THEMES_FOLDER = new File(FOLDER, "themes");
-    private static final File FILE = new File(FOLDER, "gui.nbt");
+    private static final File FOLDER = new File(MatHaxClient.FOLDER, "GUI");
+    private static final File THEMES_FOLDER = new File(FOLDER, "Themes");
+    private static final File FILE = new File(FOLDER, "GUI.nbt");
 
     private static final List<GuiTheme> themes = new ArrayList<>();
     private static GuiTheme theme;
@@ -42,7 +42,7 @@ public class GuiThemes {
             if (it.next().name.equals(theme.name)) {
                 it.remove();
 
-                MatHaxClient.LOG.error("Theme with the name '{}' has already been added.", theme.name);
+                MatHaxClient.LOG.error("[MatHax] Theme with the name '{}' has already been added.", theme.name);
                 break;
             }
         }

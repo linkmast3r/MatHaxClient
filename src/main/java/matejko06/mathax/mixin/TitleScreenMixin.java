@@ -1,6 +1,5 @@
 package matejko06.mathax.mixin;
 
-import com.g00fy2.versioncompare.Version;
 import matejko06.mathax.MatHaxClient;
 import matejko06.mathax.gui.GuiThemes;
 import matejko06.mathax.gui.screens.NewUpdateScreen;
@@ -8,10 +7,10 @@ import matejko06.mathax.systems.config.Config;
 import matejko06.mathax.systems.modules.Modules;
 import matejko06.mathax.systems.modules.misc.NameProtect;
 import matejko06.mathax.utils.Utils;
+import matejko06.mathax.utils.misc.Version;
+import matejko06.mathax.utils.network.Http;
 import matejko06.mathax.utils.network.MatHaxExecutor;
-import matejko06.mathax.utils.network.VersionHttpUtils;
 import matejko06.mathax.utils.render.color.Color;
-import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.TitleScreen;
 import net.minecraft.client.util.math.MatrixStack;
@@ -29,7 +28,7 @@ public class TitleScreenMixin extends Screen {
     @Shadow
     @Final
     private boolean doBackgroundFade;
-    private static final String VERSION_URL = "http://api.mathaxclient.xyz/Version/";
+    private static final String VERSION_URL = "http://api.mathaxclient.xyz/Version/1-17";
 
     private final int RED = Color.fromRGBA(255, 0, 0, 255);
     private final int WHITE = Color.fromRGBA(255, 255, 255, 255);
@@ -121,23 +120,27 @@ public class TitleScreenMixin extends Screen {
         prevWidthRightDown = 0;
     }
 
-    //TODO: Shows "com.g00fy2.versioncompare.Version@3f" as Client version and ignores higher version on the api website.
     @Inject(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/screen/TitleScreen;drawStringWithShadow(Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/font/TextRenderer;Ljava/lang/String;III)V", ordinal = 0))
     private void onRenderTitleScreen(MatrixStack matrices, int mouseX, int mouseY, float delta, CallbackInfo info) {
         if (Utils.firstTimeTitleScreen) {
             Utils.firstTimeTitleScreen = false;
             MatHaxClient.LOG.info("[MatHax] Checking latest version of MatHax Client...");
 
-            /*MatHaxExecutor.execute(() -> VersionHttpUtils.getLines(VERSION_URL, s -> {
-                Version latestVer = new Version(s);
-                if (latestVer.isHigherThan(Config.get().version)) MinecraftClient.getInstance().openScreen(new NewUpdateScreen(GuiThemes.get(), latestVer));
-                if (latestVer.isHigherThan(Config.get().version)) {
-                    MatHaxClient.LOG.info("[MatHax] There is a new version of MatHax Client, v" + latestVer + "! You are using v" + Config.get().version.toString() + "!");
+            /*MatHaxExecutor.execute(() -> {
+                String res = Http.get("http://api.mathaxclient.xyz/Version/1-17").sendString();
+                if (res == null) return;
+
+                Version latestVer = new Version(res);
+
+                if (latestVer.isHigherThan(Config.get().DevBuildFullReleaseNotify)) {
+                    Utils.mc.openScreen(new NewUpdateScreen(GuiThemes.get(), latestVer));
+                    //MatHaxClient.LOG.info("[MatHax] There is a new version of MatHax Client, v" + latestVer + "! You are using v" + MatHaxClient.clientversion + "!");
+                    MatHaxClient.LOG.info("[MatHax] There is a new Dev Build of MatHax Client! You are using v" + MatHaxClient.clientversion + "!");
                 } else {
-                    MatHaxClient.LOG.info("[MatHax] You are using the latest version of MatHax Client, v" + Config.get().version.toString() + "!");
+                    MatHaxClient.LOG.info("[MatHax] You are using the latest Dev Build of MatHax Client, v" + MatHaxClient.clientversion + "!");
                 }
-            }));*/
-            MatHaxClient.LOG.info("[MatHax] Update checker is currently not working, check for new version on https://mathaxclient.xyz!");
+            });*/
+            MatHaxClient.LOG.info("[MatHax] Failed to check for latest update of MatHax Client. You can check for yourself on https://mathaxclient.xyz/. You are currently using v" + MatHaxClient.clientversion);
         }
     }
 

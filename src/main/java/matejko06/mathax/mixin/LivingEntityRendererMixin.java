@@ -3,6 +3,7 @@ package matejko06.mathax.mixin;
 import matejko06.mathax.systems.modules.Modules;
 import matejko06.mathax.systems.modules.render.Chams;
 import matejko06.mathax.systems.modules.render.Freecam;
+import matejko06.mathax.systems.modules.render.NoRender;
 import matejko06.mathax.utils.player.PlayerUtils;
 import matejko06.mathax.utils.player.Rotations;
 import matejko06.mathax.utils.render.color.Color;
@@ -67,8 +68,10 @@ public abstract class LivingEntityRendererMixin<T extends LivingEntity, M extend
     //Chams
 
     //Depth
-    @Inject(method = "render", at = @At("HEAD"))
+    @Inject(method = "render", at = @At("HEAD"), cancellable = true)
     private void renderHead(T livingEntity, float f, float g, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int i, CallbackInfo ci) {
+        if (Modules.get().get(NoRender.class).noDeadEntities() && livingEntity.isDead()) ci.cancel();
+
         Chams chams = Modules.get().get(Chams.class);
 
         if (chams.isActive() && chams.shouldRender(livingEntity)) {

@@ -42,7 +42,9 @@ public class SafeWalk extends Module {
     }
 
     @EventHandler
-    private void onClipAtLedge(ClipAtLedgeEvent event) { event.setClip(ledge.get()); }
+    private void onClipAtLedge(ClipAtLedgeEvent event) {
+        if (!mc.player.isSneaking()) event.setClip(ledge.get());
+    }
 
     @EventHandler
     private void onCollisionShape(CollisionShapeEvent event) {

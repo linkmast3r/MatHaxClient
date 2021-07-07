@@ -1,6 +1,5 @@
 package matejko06.mathax.systems.accounts.types;
 
-import com.google.gson.Gson;
 import com.mojang.authlib.Agent;
 import com.mojang.authlib.exceptions.AuthenticationException;
 import com.mojang.authlib.exceptions.AuthenticationUnavailableException;
@@ -17,8 +16,6 @@ import net.minecraft.nbt.NbtCompound;
 import static matejko06.mathax.utils.Utils.mc;
 
 public class PremiumAccount extends Account<PremiumAccount> {
-    private static final Gson GSON = new Gson();
-
     private String password;
 
     public PremiumAccount(String name, String password) {
@@ -64,12 +61,12 @@ public class PremiumAccount extends Account<PremiumAccount> {
             cache.username = auth.getSelectedProfile().getName();
             return true;
         } catch (AuthenticationUnavailableException e) {
-            MatHaxClient.LOG.error("Failed to contact the authentication server.");
+            MatHaxClient.LOG.error("[MatHax] Failed to contact the authentication server.");
             return false;
         } catch (AuthenticationException e) {
             if (e.getMessage().contains("Invalid username or password") || e.getMessage().contains("account migrated"))
-                MatHaxClient.LOG.error("Wrong password.");
-            else MatHaxClient.LOG.error("Failed to contact the authentication server.");
+                MatHaxClient.LOG.error("[MatHax] Wrong password.");
+            else MatHaxClient.LOG.error("[MatHax] Failed to contact the authentication server.");
             return false;
         }
     }
