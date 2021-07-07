@@ -68,13 +68,11 @@ public class DiscordPresence extends Module {
                     currentSmallImage = SmallImage.Matejko06;
                 } else if (mc.getSession().getUsername().equals("GeekieCoder")) {
                     currentSmallImage = SmallImage.GeekieCoder;
-                } else if (mc.getSession().getUsername().equals("ludanecek")) {
-                    currentSmallImage = SmallImage.Ludanecek;
                 } else {
-                    currentSmallImage = SmallImage.NotClientVIP;
+                    currentSmallImage = SmallImage.NotClientDeveloper;
                 }
             } else {
-                currentSmallImage = SmallImage.NotClientVIP;
+                currentSmallImage = SmallImage.NotClientDeveloper;
             }
             currentSmallImage.apply();
             instance.Discord_UpdatePresence(rpc);
@@ -98,8 +96,7 @@ public class DiscordPresence extends Module {
     private enum SmallImage {
         Matejko06("matejko06", "Developer: Matejko06"),
         GeekieCoder("geekiecoder", "Developer: GeekieCoder"),
-        Ludanecek("ludanecek","VIP: ludanecek"),
-        NotClientVIP("", "");
+        NotClientDeveloper("", "");
 
         private final String key, text;
 
