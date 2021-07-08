@@ -31,136 +31,144 @@ public class BetterChat extends Module {
     private final SettingGroup sgSuffix = settings.createGroup("Suffix");
 
     private final Setting<Boolean> annoy = sgGeneral.add(new BoolSetting.Builder()
-            .name("annoy")
-            .description("Makes your messages aNnOyInG.")
-            .defaultValue(false)
-            .build()
+        .name("annoy")
+        .description("Makes your messages aNnOyInG.")
+        .defaultValue(false)
+        .build()
     );
 
     private final Setting<Boolean> fancy = sgGeneral.add(new BoolSetting.Builder()
-            .name("fancy-chat")
-            .description("Makes your messages ＦＡＮＣＹ!")
-            .defaultValue(false)
-            .build()
+        .name("fancy-chat")
+        .description("Makes your messages ＦＡＮＣＹ!")
+        .defaultValue(false) //TODO: Font switcher [Full Width & Small CAPS]
+        .build()
     );
 
     private final Setting<Boolean> timestamps = sgGeneral.add(new BoolSetting.Builder()
-            .name("timestamps")
-            .description("Adds client side time stamps to the beginning of chat messages.")
-            .defaultValue(false)
-            .build()
+        .name("timestamps")
+        .description("Adds client side time stamps to the beginning of chat messages.")
+        .defaultValue(false)
+        .build()
     );
 
     private final Setting<Boolean> antiSpam = sgGeneral.add(new BoolSetting.Builder()
-            .name("anti-spam")
-            .description("Blocks duplicate messages from filling your chat.")
-            .defaultValue(true)
-            .build()
+        .name("anti-spam")
+        .description("Blocks duplicate messages from filling your chat.")
+        .defaultValue(true)
+        .build()
     );
 
     private final Setting<Integer> antiSpamDepth = sgGeneral.add(new IntSetting.Builder()
-            .name("depth")
-            .description("How many messages to check for duplicate messages.")
-            .defaultValue(20)
-            .min(1)
-            .sliderMin(1)
-            .visible(antiSpam::get)
-            .build()
+        .name("depth")
+        .description("How many messages to check for duplicate messages.")
+        .defaultValue(20)
+        .min(1)
+        .sliderMin(1)
+        .visible(antiSpam::get)
+        .build()
     );
 
     private final Setting<Boolean> coordsProtection = sgGeneral.add(new BoolSetting.Builder()
-            .name("coords-protection")
-            .description("Prevents you from sending messages in chat that may contain coordinates.")
-            .defaultValue(true)
-            .build()
+        .name("coords-protection")
+        .description("Prevents you from sending messages in chat that may contain coordinates.")
+        .defaultValue(true)
+        .build()
     );
 
     private final Setting<Boolean> infiniteChatBox = sgGeneral.add(new BoolSetting.Builder()
-            .name("infinite-chat-box")
-            .description("Lets you type infinitely long messages.")
-            .defaultValue(true)
-            .build()
+        .name("infinite-chat-box")
+        .description("Lets you type infinitely long messages.")
+        .defaultValue(true)
+        .build()
     );
 
     private final Setting<Boolean> longerChatHistory = sgGeneral.add(new BoolSetting.Builder()
-            .name("longer-chat-history")
-            .description("Extends chat length.")
-            .defaultValue(true)
-            .build()
+        .name("longer-chat-history")
+        .description("Extends chat length.")
+        .defaultValue(true)
+        .build()
     );
 
     private final Setting<Integer> longerChatLines = sgGeneral.add(new IntSetting.Builder()
-            .name("extra-lines")
-            .description("The amount of extra chat lines.")
-            .defaultValue(1000)
-            .min(100)
-            .sliderMax(1000)
-            .visible(longerChatHistory::get)
-            .build()
+        .name("extra-lines")
+        .description("The amount of extra chat lines.")
+        .defaultValue(1000)
+        .min(100)
+        .sliderMax(1000)
+        .visible(longerChatHistory::get)
+        .build()
     );
 
     // Prefix
 
     private final Setting<Boolean> prefix = sgPrefix.add(new BoolSetting.Builder()
-            .name("prefix")
-            .description("Adds a prefix to your chat messages.")
-            .defaultValue(false)
-            .build()
+        .name("prefix")
+        .description("Adds a prefix to your chat messages.")
+        .defaultValue(false)
+        .build()
     );
 
     private final Setting<Boolean> prefixRandom = sgPrefix.add(new BoolSetting.Builder()
-            .name("random")
-            .description("Uses a random number as your prefix.")
-            .defaultValue(false)
-            .build()
+        .name("random")
+        .description("Uses a random number as your prefix.")
+        .defaultValue(false)
+        .build()
     );
 
     private final Setting<String> prefixText = sgPrefix.add(new StringSetting.Builder()
-            .name("text")
-            .description("The text to add as your prefix.")
-            .defaultValue("> ")
-            .visible(() -> !prefixRandom.get())
-            .build()
+        .name("text")
+        .description("The text to add as your prefix.")
+        .defaultValue("> ")
+        .visible(() -> !prefixRandom.get())
+        .build()
     );
 
     private final Setting<Boolean> prefixSmallCaps = sgPrefix.add(new BoolSetting.Builder()
-            .name("small-caps")
-            .description("Uses small caps in the prefix.")
-            .defaultValue(false)
-            .visible(() -> !prefixRandom.get())
-            .build()
+        .name("small-caps")
+        .description("Uses small caps in the prefix.")
+        .defaultValue(false)
+        .visible(() -> !prefixRandom.get())
+        .build()
     );
 
     // Suffix
 
     private final Setting<Boolean> suffix = sgSuffix.add(new BoolSetting.Builder()
-            .name("suffix")
-            .description("Adds a suffix to your chat messages.")
-            .defaultValue(false)
-            .build()
+        .name("suffix")
+        .description("Adds a suffix to your chat messages.")
+        .defaultValue(false)
+        .build()
     );
 
     private final Setting<Boolean> suffixRandom = sgSuffix.add(new BoolSetting.Builder()
-            .name("random")
-            .description("Uses a random number as your suffix.")
-            .defaultValue(false)
-            .build()
+        .name("random")
+        .description("Uses a random number as your suffix.")
+        .defaultValue(false)
+        .build()
     );
 
     private final Setting<String> suffixText = sgSuffix.add(new StringSetting.Builder()
-            .name("text")
-            .description("The text to add as your suffix.")
-            .defaultValue(" | MatHax")
-            .visible(() -> !suffixRandom.get())
-            .build()
+        .name("text")
+        .description("The text to add as your suffix.")
+        .defaultValue(" | MatHax")
+        .visible(() -> !suffixRandom.get())
+        .build()
     );
 
     private final Setting<Boolean> suffixSmallCaps = sgSuffix.add(new BoolSetting.Builder()
-            .name("small-caps")
-            .description("Uses small caps in the suffix.")
-            .defaultValue(true)
-            .visible(() -> !suffixRandom.get())
-            .build()
+        .name("small-caps")
+        .description("Uses Small CAPS font in the suffix.")
+        .defaultValue(true)
+        .visible(() -> !suffixRandom.get())
+        .build()
+    );
+    //TODO: Font switcher [Full Width, Small CAPS & None]
+    private final Setting<Boolean> suffixFullWidth = sgSuffix.add(new BoolSetting.Builder()
+        .name("full-width")
+        .description("Uses Full Width font in the suffix.")
+        .defaultValue(true)
+        .visible(() -> !suffixRandom.get())
+        .build()
     );
 
     private final SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm");
@@ -169,18 +177,18 @@ public class BetterChat extends Module {
         super(Categories.Misc, "better-chat", "Improves your chat experience in various ways.");
     }
 
-    private final Char2CharMap FANCY_CHAT = new Char2CharArrayMap();
+    private final Char2CharMap FULL_WIDTH = new Char2CharArrayMap();
     private final Char2CharMap SMALL_CAPS = new Char2CharArrayMap();
 
     {
         String[] chars = "aábcčdďeéěfghchiíjklmnňoópqrřsštťuúůvwxyýzžAÁBCČDĎEÉĚFGHCHIÍJKLMNŇOÓPQRŘSŠTŤUÚŮVWXYÝZŽ123456789|".split("");
         String[] fontchars = "ａáｂｃčｄďｅéěｆｇｈｃｈｉíｊｋｌｍｎňｏóｐｑｒřｓšｔťｕúůｖｗｘｙýｚžＡÁＢＣČＤĎＥÉĚＦＧＨＣＨＩÍＪＫＬＭＮŇＯÓＰＱＲŘＳŠＴŤＵÚŮＶＷＸＹÝＺŽ１２３４５６７８９｜".split("");
-        for (int i = 0; i < chars.length; i++) FANCY_CHAT.put(chars[i].charAt(0), fontchars[i].charAt(0));
+        for (int i = 0; i < chars.length; i++) FULL_WIDTH.put(chars[i].charAt(0), fontchars[i].charAt(0));
     }
 
     {
         String[] chars = "abcdefghchijklmnopqrstuvwxyzABCDEFGHCHIJKLMNOPQRSTUVWXYZ123456789|".split("");
-        String[] fontchars = "ᴀʙᴄᴅᴇꜰɢʜᴄʜɪᴊᴋʟᴍɴᴏᴩqʀꜱᴛᴜᴠᴡxyᴢᴀʙᴄᴅᴇꜰɢʜᴄʜɪᴊᴋʟᴍɴᴏᴩQʀꜱᴛᴜᴠᴡxYᴢ123456789|".split("");
+        String[] fontchars = "ᴀʙᴄᴅᴇꜰɢʜᴄʜɪᴊᴋʟᴍɴᴏᴘqʀꜱᴛᴜᴠᴡˣʏᴢᴀʙᴄᴅᴇꜰɢʜᴄʜɪᴊᴋʟᴍɴᴏᴩQʀꜱᴛᴜᴠᴡxYᴢ123456789|".split("");
         for (int i = 0; i < chars.length; i++) SMALL_CAPS.put(chars[i].charAt(0), fontchars[i].charAt(0));
     }
 
@@ -259,7 +267,7 @@ public class BetterChat extends Module {
 
         if (annoy.get()) message = applyAnnoy(message);
 
-        if (fancy.get()) message = applyFancy(message);
+        if (fancy.get()) message = applyFull(message);
 
         message = getPrefix() + message + getSuffix();
 
@@ -306,13 +314,13 @@ public class BetterChat extends Module {
         return message;
     }
 
-    // Fancy
+    // Full
 
-    private String applyFancy(String message) {
+    private String applyFull(String message) {
         StringBuilder sb = new StringBuilder();
 
         for (char ch : message.toCharArray()) {
-            if (FANCY_CHAT.containsKey(ch)) sb.append(FANCY_CHAT.get(ch));
+            if (FULL_WIDTH.containsKey(ch)) sb.append(FULL_WIDTH.get(ch));
             else sb.append(ch);
         }
 
@@ -335,16 +343,17 @@ public class BetterChat extends Module {
     // Prefix and Suffix
 
     private String getPrefix() {
-        return prefix.get() ? getAffix(prefixText.get(), prefixSmallCaps.get(), prefixRandom.get()) : "";
+        return prefix.get() ? getAffix(prefixText.get(), prefixSmallCaps.get(), suffixFullWidth.get(), prefixRandom.get()) : "";
     }
 
     private String getSuffix() {
-        return suffix.get() ? getAffix(suffixText.get(), suffixSmallCaps.get(), suffixRandom.get()) : "";
+        return suffix.get() ? getAffix(suffixText.get(), suffixSmallCaps.get(), suffixFullWidth.get(), suffixRandom.get()) : "";
     }
 
-    private String getAffix(String text, boolean smallcaps, boolean random) {
+    private String getAffix(String text, boolean smallcaps, boolean fullwidth, boolean random) {
         if (random) return String.format("(%03d) ", Utils.random(0, 1000));
         else if (smallcaps) return applySmall(text);
+        else if (fullwidth) return applyFull(text);
         else return text;
     }
 
@@ -365,15 +374,15 @@ public class BetterChat extends Module {
         hintBaseText.append(new LiteralText('\n' + message));
 
         sendButton.setStyle(sendButton.getStyle()
-                .withFormatting(Formatting.DARK_RED)
-                .withClickEvent(new ClickEvent(
-                        ClickEvent.Action.RUN_COMMAND,
-                        Commands.get().get(SayCommand.class).toString(message)
-                ))
-                .withHoverEvent(new HoverEvent(
-                        HoverEvent.Action.SHOW_TEXT,
-                        hintBaseText
-                )));
+            .withFormatting(Formatting.DARK_RED)
+            .withClickEvent(new ClickEvent(
+                ClickEvent.Action.RUN_COMMAND,
+                Commands.get().get(SayCommand.class).toString(message)
+            ))
+            .withHoverEvent(new HoverEvent(
+                HoverEvent.Action.SHOW_TEXT,
+                hintBaseText
+            )));
         return sendButton;
     }
 }

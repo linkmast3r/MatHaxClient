@@ -6,6 +6,8 @@ import matejko06.mathax.gui.screens.NewUpdateScreen;
 import matejko06.mathax.systems.config.Config;
 import matejko06.mathax.systems.modules.Modules;
 import matejko06.mathax.systems.modules.misc.NameProtect;
+import matejko06.mathax.systems.proxies.Proxies;
+import matejko06.mathax.systems.proxies.Proxy;
 import matejko06.mathax.utils.Utils;
 import matejko06.mathax.utils.misc.Version;
 import matejko06.mathax.utils.network.Http;
