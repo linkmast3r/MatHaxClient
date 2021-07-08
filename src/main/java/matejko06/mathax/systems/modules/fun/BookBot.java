@@ -1,4 +1,4 @@
-package matejko06.mathax.systems.modules.misc;
+package matejko06.mathax.systems.modules.fun;
 
 import matejko06.mathax.MatHaxClient;
 import matejko06.mathax.events.world.TickEvent;
@@ -96,7 +96,7 @@ public class BookBot extends Module {
     private Random random;
 
     public BookBot() {
-        super(Categories.Misc, "book-bot", "Automatically writes in books.");
+        super(Categories.Fun, "book-bot", "Automatically writes in books.");
 
         if (!file.exists()) {
             file = null;

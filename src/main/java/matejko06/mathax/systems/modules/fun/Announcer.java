@@ -1,4 +1,4 @@
-package matejko06.mathax.systems.modules.misc;
+package matejko06.mathax.systems.modules.fun;
 
 import matejko06.mathax.MatHaxClient;
 import matejko06.mathax.events.entity.DropItemsEvent;
@@ -8,11 +8,13 @@ import matejko06.mathax.events.entity.player.PlaceBlockEvent;
 import matejko06.mathax.events.game.OpenScreenEvent;
 import matejko06.mathax.events.world.TickEvent;
 import matejko06.mathax.settings.*;
+import matejko06.mathax.systems.friends.Friend;
 import matejko06.mathax.systems.modules.Categories;
 import matejko06.mathax.systems.modules.Module;
 import matejko06.mathax.bus.EventHandler;
 import net.minecraft.block.Block;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 
 public class Announcer extends Module {
@@ -29,7 +31,7 @@ public class Announcer extends Module {
     };
 
     public Announcer() {
-        super(Categories.Misc, "announcer", "Announces specified actions into chat.");
+        super(Categories.Fun, "announcer", "Announces specified actions into chat.");
     }
 
     @Override
@@ -92,6 +94,7 @@ public class Announcer extends Module {
     }
 
     /*private class FriendGreeter extends Feature {
+
         private final Setting<String> msg = sg.add(new StringSetting.Builder()
             .name("greeter-msg")
             .description("The chat message saying hi to your joining friends.")
@@ -99,8 +102,38 @@ public class Announcer extends Module {
             .build()
         );
 
+        private final Setting<Double> delay = sg.add(new DoubleSetting.Builder()
+            .name("moving-delay")
+            .description("The amount of delay between greeting messages in seconds.")
+            .defaultValue(10)
+            .sliderMax(60)
+            .build()
+        );
+
+        private double timer;
+
         FriendGreeter() {
-            super("Friend Greeter", "friend-greeter-enabled", "Send msg when your Friend joins.");
+            super("Friend Greeter", "friend-greeter-enabled", "Sends msg when your Friend joins.");
+        }
+
+        @Override
+        void reset() {
+            timer = 0;
+        }
+
+        @Override
+        void tick() {
+
+            if (timer >= delay.get()) {
+                timer = 0;
+
+                if () {
+
+                    sendMsg();
+                }
+            } else {
+                timer += TICK;
+            }
         }
 
         void sendMsg() {

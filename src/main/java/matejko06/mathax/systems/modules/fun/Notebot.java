@@ -1,4 +1,4 @@
-package matejko06.mathax.systems.modules.misc;
+package matejko06.mathax.systems.modules.fun;
 
 import matejko06.mathax.MatHaxClient;
 import matejko06.mathax.events.render.Render3DEvent;
@@ -130,7 +130,7 @@ public class Notebot extends Module {
     private WLabel status;
 
     public Notebot() {
-        super(Categories.Misc, "notebot","Plays noteblock nicely");
+        super(Categories.Fun, "notebot","Plays noteblock nicely");
 
         for (int y = -5; y < 5; y++) {
             for (int x = -5; x < 5; x++) {

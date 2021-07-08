@@ -10,7 +10,7 @@ import matejko06.mathax.gui.GuiThemes;
 import matejko06.mathax.gui.screens.NotebotHelpScreen;
 import matejko06.mathax.systems.commands.Command;
 import matejko06.mathax.systems.modules.Modules;
-import matejko06.mathax.systems.modules.misc.Notebot;
+import matejko06.mathax.systems.modules.fun.Notebot;
 import matejko06.mathax.bus.EventHandler;
 import net.minecraft.command.CommandSource;
 import net.minecraft.network.packet.s2c.play.PlaySoundS2CPacket;
