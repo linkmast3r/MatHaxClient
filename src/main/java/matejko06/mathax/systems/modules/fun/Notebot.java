@@ -248,7 +248,7 @@ public class Notebot extends Module {
         noSongsFound = true;
 
         try {
-            Files.list(MatHaxClient.FOLDER.toPath().resolve("notebot")).forEach(path -> {
+            Files.list(MatHaxClient.PUBLIC_FOLDER.toPath().resolve("Notebot")).forEach(path -> {
                 if (isValidFile(path)) {
                     noSongsFound = false;
                     table.add(theme.label(getFileLabel(path))).expandCellX();
@@ -266,7 +266,7 @@ public class Notebot extends Module {
                 }
             });
         }  catch (IOException e) {
-            table.add(theme.label("Missing \"notebot\" folder.")).expandCellX();
+            table.add(theme.label("Missing \"Notebot\" folder.")).expandCellX();
             table.row();
         }
         if (noSongsFound) {
