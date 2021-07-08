@@ -123,9 +123,17 @@ public class BetterChat extends Module {
         .build()
     );
 
+    private final Setting<Boolean> prefixFullWidth = sgPrefix.add(new BoolSetting.Builder()
+        .name("full-width")
+        .description("Uses Full Width font in the suffix.")
+        .defaultValue(true)
+        .visible(() -> !prefixRandom.get())
+        .build()
+    );
+    //TODO: Font switcher [Full Width, Small CAPS & None]
     private final Setting<Boolean> prefixSmallCaps = sgPrefix.add(new BoolSetting.Builder()
         .name("small-caps")
-        .description("Uses small caps in the prefix.")
+        .description("Uses Small CAPS font in the prefix.")
         .defaultValue(false)
         .visible(() -> !prefixRandom.get())
         .build()
@@ -155,17 +163,17 @@ public class BetterChat extends Module {
         .build()
     );
 
-    private final Setting<Boolean> suffixSmallCaps = sgSuffix.add(new BoolSetting.Builder()
-        .name("small-caps")
-        .description("Uses Small CAPS font in the suffix.")
+    private final Setting<Boolean> suffixFullWidth = sgSuffix.add(new BoolSetting.Builder()
+        .name("full-width")
+        .description("Uses Full Width font in the suffix.")
         .defaultValue(true)
         .visible(() -> !suffixRandom.get())
         .build()
     );
     //TODO: Font switcher [Full Width, Small CAPS & None]
-    private final Setting<Boolean> suffixFullWidth = sgSuffix.add(new BoolSetting.Builder()
-        .name("full-width")
-        .description("Uses Full Width font in the suffix.")
+    private final Setting<Boolean> suffixSmallCaps = sgSuffix.add(new BoolSetting.Builder()
+        .name("small-caps")
+        .description("Uses Small CAPS font in the suffix.")
         .defaultValue(true)
         .visible(() -> !suffixRandom.get())
         .build()
@@ -343,7 +351,7 @@ public class BetterChat extends Module {
     // Prefix and Suffix
 
     private String getPrefix() {
-        return prefix.get() ? getAffix(prefixText.get(), prefixSmallCaps.get(), suffixFullWidth.get(), prefixRandom.get()) : "";
+        return prefix.get() ? getAffix(prefixText.get(), prefixSmallCaps.get(), prefixRandom.get(), prefixRandom.get()) : "";
     }
 
     private String getSuffix() {
