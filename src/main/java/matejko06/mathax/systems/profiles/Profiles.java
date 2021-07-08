@@ -16,7 +16,7 @@ import java.util.List;
 
 public class Profiles extends System<Profiles> implements Iterable<Profile> {
 
-    public static final File FOLDER = new File(MatHaxClient.FOLDER, "Profiles");
+    public static final File FOLDER = new File(MatHaxClient.VERSION_FOLDER, "Profiles");
     private List<Profile> profiles = new ArrayList<>();
 
     public Profiles() {

@@ -68,9 +68,9 @@ public class NotebotCommand extends Command {
             if (name == null || name.equals("")) {
                 throw INVALID_NAME.create();
             }
-            Path path = MatHaxClient.FOLDER.toPath().resolve(String.format("notebot/%s.txt",name));
+            Path path = MatHaxClient.FOLDER.toPath().resolve(String.format("Notebot/%s.txt",name));
             if (!path.toFile().exists()) {
-                path = MatHaxClient.FOLDER.toPath().resolve(String.format("notebot/%s.nbs",name));
+                path = MatHaxClient.FOLDER.toPath().resolve(String.format("Notebot/%s.nbs",name));
             }
             notebot.loadSong(path.toFile());
             return SINGLE_SUCCESS;
@@ -81,9 +81,9 @@ public class NotebotCommand extends Command {
             if (name == null || name == "") {
                 throw INVALID_NAME.create();
             }
-            Path path = MatHaxClient.FOLDER.toPath().resolve(String.format("notebot/%s.txt",name));
+            Path path = MatHaxClient.FOLDER.toPath().resolve(String.format("Notebot/%s.txt",name));
             if (!path.toFile().exists()) {
-                path = MatHaxClient.FOLDER.toPath().resolve(String.format("notebot/%s.nbs",name));
+                path = MatHaxClient.FOLDER.toPath().resolve(String.format("Notebot/%s.nbs",name));
             }
             notebot.previewSong(path.toFile());
             return  SINGLE_SUCCESS;
@@ -105,7 +105,7 @@ public class NotebotCommand extends Command {
             if (name == null || name == "") {
                 throw INVALID_NAME.create();
             }
-            Path path = MatHaxClient.FOLDER.toPath().resolve(String.format("notebot/%s.txt",name));
+            Path path = MatHaxClient.FOLDER.toPath().resolve(String.format("Notebot/%s.txt",name));
             saveRecording(path);
             return  SINGLE_SUCCESS;
         }))));

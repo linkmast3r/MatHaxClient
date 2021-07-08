@@ -12,7 +12,7 @@ import java.util.Iterator;
 import java.util.List;
 
 public class GuiThemes {
-    private static final File FOLDER = new File(MatHaxClient.FOLDER, "GUI");
+    private static final File FOLDER = new File(MatHaxClient.VERSION_FOLDER, "GUI");
     private static final File THEMES_FOLDER = new File(FOLDER, "Themes");
     private static final File FILE = new File(FOLDER, "GUI.nbt");
 

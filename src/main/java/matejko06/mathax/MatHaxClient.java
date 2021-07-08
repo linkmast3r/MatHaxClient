@@ -61,8 +61,8 @@ public class MatHaxClient implements ClientModInitializer {
     public static MatHaxClient INSTANCE;
     public static final IEventBus EVENT_BUS = new EventBus();
     public static final File MCCONFIG_FOLDER = new File(net.fabricmc.loader.FabricLoader.INSTANCE.getGameDirectory().toString(), "config/MatHax");
-    public static final File PUBLIC_FOLDER = new File(FabricLoader.getInstance().getGameDir().toString(), "MatHax");
-    public static final File FOLDER = new File(PUBLIC_FOLDER + getMinecraftVersion());
+    public static final File FOLDER = new File(FabricLoader.getInstance().getGameDir().toString(), "MatHax");
+    public static final File VERSION_FOLDER = new File(FOLDER + "/" + getMinecraftVersion());
     public static final Logger LOG = LogManager.getLogger();
 
     public static Screen screenToOpen;
