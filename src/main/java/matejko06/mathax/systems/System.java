@@ -14,7 +14,7 @@ public abstract class System<T> implements ISerializable<T> {
 
     public System(String name) {
         if (name != null) {
-            this.file = new File(MatHaxClient.FOLDER, name + ".nbt");
+            this.file = new File(MatHaxClient.VERSION_FOLDER, name + ".nbt");
         }
     }
 

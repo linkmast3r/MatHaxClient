@@ -70,7 +70,7 @@ public class MatHaxClient implements ClientModInitializer {
     public static String logprefix = "[MatHax] ";
 
     public static String versionNumber = "1.0.0";
-    public static String devBuildNumber = "11";
+    public static String devBuildNumber = "12";
 
     public static String devbuild = " Dev Build " + devBuildNumber + " ";
     //public static String devbuild = "";
@@ -201,7 +201,7 @@ public class MatHaxClient implements ClientModInitializer {
 
     public void updateTitleLoading() {
         final Window window = MinecraftClient.getInstance().getWindow();
-        window.setTitle("Loading MatHax Client v" + clientversion + "...");
+        window.setTitle("Loading MatHax Client v" + clientversion + "...".replace(devBuildNumber + " ...", devBuildNumber + "..."));
     }
 
     public void updateTitleLoaded() {

@@ -12,7 +12,6 @@ import net.minecraft.nbt.NbtCompound;
 
 public class Config extends System<Config> {
     public final Version version;
-    public final Version DevBuildFullReleaseNotify;
     public final String devBuild;
 
     public String font = ConfigTab.font.get();
@@ -36,7 +35,6 @@ public class Config extends System<Config> {
         if (versionString.contains("-")) versionString = versionString.split("-")[0];
 
         version = new Version(versionString);
-        DevBuildFullReleaseNotify = new Version("0.4.4");
         devBuild = "12";
     }
 
