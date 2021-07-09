@@ -1,8 +1,8 @@
 {
   "required": true,
-  "package": "matejko06.mathax.mixin",
+  "package": "mathax.client.mixin",
   "compatibilityLevel": "JAVA_16",
-  "plugin": "matejko06.mathax.MixinPlugin",
+  "plugin": "mathax.client.MixinPlugin",
   "client": [
     "AbstractBlockAccessor",
     "AbstractBlockMixin",
