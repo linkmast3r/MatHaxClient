@@ -121,7 +121,7 @@ public class TitleScreenMixin extends Screen {
             MatHaxClient.LOG.info(MatHaxClient.logprefix + "Checking latest version of MatHax Client...");
 
             /*MatHaxExecutor.execute(() -> {
-                String res = Http.get("http://api.mathaxclient.xyz/Version/1-17").sendString();
+                String res = Http.get("http://api.mathaxclient.xyz/Version/1-17-1").sendString();
                 if (res == null) return;
 
                 Version latestVer = new Version(res);

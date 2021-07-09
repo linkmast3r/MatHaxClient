@@ -109,7 +109,7 @@ public class MatHaxClient implements ClientModInitializer {
             if (!Modules.get().getFile().exists()) {
                 Modules.get().get(HUD.class).toggle(false);
                 Modules.get().get(DiscordPresence.class).toggle(false);
-                //Utils.addMatHaxPvpToServerList();
+                //Utils.addMatHaxPVPToServerList();
             }
         });
 
